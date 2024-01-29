@@ -3,9 +3,19 @@
     <div class="navigation-container">
       <div class="main-container">
         <ul class="nav-btn-container">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">New Releases</a></li>
-          <li><a href="#">Trending</a></li>
+          <li @click="setActive('Home')">
+            <a href="#" :class="{ active: activeItem === 'Home' }">Home</a>
+          </li>
+          <li @click="setActive('New Releases')">
+            <a href="#" :class="{ active: activeItem === 'New Releases' }"
+              >New Releases</a
+            >
+          </li>
+          <li @click="setActive('Trending')">
+            <a href="#" :class="{ active: activeItem === 'Trending' }"
+              >Trending</a
+            >
+          </li>
         </ul>
         <p>YAY Movies!</p>
         <div></div>
@@ -17,6 +27,16 @@
 <script>
 export default {
   name: "NavBar",
+  data() {
+    return {
+      activeItem: "Home",
+    };
+  },
+  methods: {
+    setActive(item) {
+      this.activeItem = item;
+    },
+  },
 };
 </script>
 
@@ -44,6 +64,7 @@ ul {
 
 .nav-btn-container {
   display: flex;
+  margin-left: 10px;
 }
 
 li {
@@ -54,5 +75,9 @@ li {
 a {
   text-decoration: none;
   color: white;
+}
+
+.active {
+  color: gold;
 }
 </style>

@@ -9,7 +9,7 @@
 import MovieGrid from "@/components/MovieGrid.vue";
 
 export default {
-  name: "HomePage",
+  name: "TrendingPage",
   components: {
     MovieGrid,
   },
