@@ -1,8 +1,12 @@
 <template>
   <div class="movie-grid">
-    <div v-for="(movie, index) in movies" :key="index" class="movie-item">
-      <img :src="movie.poster" :alt="movie.title" class="movie-image" />
-      <p class="movie-title">{{ movie.title }}</p>
+    <div v-for="(movie, index) in movies" :key="index" class="movie-container">
+      <div class="movie-item">
+        <img :src="movie.poster" :alt="movie.title" class="movie-image" />
+      </div>
+      <div class="movie-title">
+        <p>{{ movie.title }}</p>
+      </div>
     </div>
   </div>
 </template>
