@@ -1,10 +1,13 @@
 <template>
   <nav>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">New Releases</a></li>
-      <!-- Add more navigation links as needed -->
-    </ul>
+    <div class="navigation-container">
+      <div class="main-container">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">New Releases</a></li>
+        </ul>
+      </div>
+    </div>
   </nav>
 </template>
 
@@ -15,11 +18,21 @@ export default {
 </script>
 
 <style scoped>
-/* Add your navbar styling here */
 nav {
-  background-color: #333;
+  background-color: #0d253f;
   color: white;
   padding: 10px 0;
+}
+
+.navigation-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.main-container {
+  padding: 0px 10px;
+  display: flex;
+  justify-content: left;
 }
 
 ul {
