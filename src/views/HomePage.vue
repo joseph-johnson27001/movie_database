@@ -1,11 +1,17 @@
 <template>
   <div>
     <h2>Trending</h2>
+    <MovieGrid />
   </div>
 </template>
 
-<style scoped>
-h2 {
-  font-weight: 400;
-}
-</style>
+<script>
+import MovieGrid from "@/components/MovieGrid.vue";
+
+export default {
+  name: "HomePage",
+  components: {
+    MovieGrid,
+  },
+};
+</script>
