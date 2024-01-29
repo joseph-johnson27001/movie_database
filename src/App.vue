@@ -29,7 +29,7 @@ export default {
 body {
   background-color: #f7f7f7;
   margin: 0;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 
 #app {
@@ -37,24 +37,11 @@ body {
   color: #2c3e50;
 }
 
-p,
-li,
-h1,
-h2,
-h3 {
-  color: white !important;
-}
-
-strong {
-  color: #2c3e50;
-}
-
 main {
   max-width: 1200px;
   margin: 0px auto;
-  padding: 20px;
-  background-color: white;
-  border: 1px solid #ddd;
+  /* background-color: white;
+  border: 1px solid #ddd; */
   min-height: 100vh;
   border-radius: 5px;
 }

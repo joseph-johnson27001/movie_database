@@ -24,6 +24,8 @@ input {
   border-radius: 20px;
   margin-right: 10px;
   outline: none;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 400;
 }
 
 input:focus {
