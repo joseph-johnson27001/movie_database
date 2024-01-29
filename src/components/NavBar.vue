@@ -2,11 +2,13 @@
   <nav>
     <div class="navigation-container">
       <div class="main-container">
-        <ul>
+        <ul class="nav-btn-container">
           <li><a href="#">Home</a></li>
           <li><a href="#">New Releases</a></li>
           <li><a href="#">Trending</a></li>
         </ul>
+        <p>YAY Movies!</p>
+        <div></div>
       </div>
     </div>
   </nav>
@@ -31,14 +33,17 @@ nav {
 }
 
 .main-container {
-  padding: 0px 10px;
-  display: flex;
-  justify-content: left;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 ul {
   list-style-type: none;
   padding: 0;
+}
+
+.nav-btn-container {
+  display: flex;
 }
 
 li {

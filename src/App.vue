@@ -40,8 +40,6 @@ body {
 main {
   max-width: 1200px;
   margin: 0px auto;
-  /* background-color: white;
-  border: 1px solid #ddd; */
   min-height: 100vh;
   border-radius: 5px;
 }
