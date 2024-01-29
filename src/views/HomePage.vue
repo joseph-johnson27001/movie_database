@@ -1,17 +1,24 @@
 <template>
   <div>
-    <h2>Trending</h2>
-    <MovieGrid />
+    <!-- <h2>Trending</h2> -->
+    <!-- <MovieGrid /> -->
   </div>
 </template>
 
 <script>
-import MovieGrid from "@/components/MovieGrid.vue";
+// import MovieGrid from "@/components/MovieGrid.vue";
 
 export default {
   name: "HomePage",
-  components: {
-    MovieGrid,
-  },
+  // components: {
+  //   MovieGrid,
+  // },
 };
 </script>
+
+<style scoped>
+h2 {
+  display: flex;
+  margin-right: auto;
+}
+</style>

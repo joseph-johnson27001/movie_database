@@ -5,6 +5,7 @@
         <ul>
           <li><a href="#">Home</a></li>
           <li><a href="#">New Releases</a></li>
+          <li><a href="#">Trending</a></li>
         </ul>
       </div>
     </div>
