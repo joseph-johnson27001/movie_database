@@ -8,9 +8,4 @@ export default {
 };
 </script>
 
-<style scoped>
-h2 {
-  display: flex;
-  margin-right: auto;
-}
-</style>
+<style scoped></style>
