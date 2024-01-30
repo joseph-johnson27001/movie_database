@@ -17,6 +17,13 @@
           </li>
           <li>
             <router-link
+              to="/top-rated"
+              :class="{ active: isActive('Top Rated') }"
+              >Top Rated</router-link
+            >
+          </li>
+          <li>
+            <router-link
               to="/trending"
               :class="{ active: isActive('Trending') }"
               >Trending</router-link

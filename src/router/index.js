@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "../views/HomePage.vue";
 import NewReleasesPage from "../views/NewReleasesPage.vue";
 import TrendingPage from "../views/TrendingPage.vue";
+import TopRatedPage from "../views/TopRatedPage.vue";
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: "/trending",
     name: "Trending",
     component: TrendingPage,
+  },
+  {
+    path: "/top-rated",
+    name: "Top Rated",
+    component: TopRatedPage,
   },
 ];
 

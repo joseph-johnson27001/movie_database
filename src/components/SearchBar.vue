@@ -26,6 +26,7 @@ input {
   outline: none;
   font-family: "Quicksand", sans-serif;
   font-weight: 400;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 input:focus {
@@ -34,13 +35,14 @@ input:focus {
 }
 
 button {
-  padding: 12px 20px;
+  padding: 15px 20px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.2s;
+  /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.4); */
 }
 
 button:hover {
