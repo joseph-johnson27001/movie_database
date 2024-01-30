@@ -1,17 +1,26 @@
 <template>
   <div>
     <h2>Top Rated</h2>
-    <MovieGrid />
+    <MovieGrid :movies="topRatedMovies" />
   </div>
 </template>
 
 <script>
 import MovieGrid from "@/components/MovieGrid.vue";
+import { fetchTopRatedMovies } from "@/services/movieService.js";
 
 export default {
   name: "TopRatedPage",
   components: {
     MovieGrid,
+  },
+  data() {
+    return {
+      topRatedMovies: [],
+    };
+  },
+  async mounted() {
+    this.topRatedMovies = await fetchTopRatedMovies();
   },
 };
 </script>

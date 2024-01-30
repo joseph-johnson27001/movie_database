@@ -20,13 +20,34 @@ async function fetchTrendingMovies() {
       throw new Error("Failed to fetch trending movies");
     }
     const data = await response.json();
-    return data.results; // Assuming the API response contains a 'results' array of movies
+    return data.results;
   } catch (error) {
     console.error("Error fetching trending movies:", error);
     return [];
   }
 }
 
-// Define more functions for different API calls if needed...
+async function fetchTopRatedMovies() {
+  const url = `${BASE_URL}/movie/top_rated`;
+  const options = {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  };
 
-module.exports = { fetchTrendingMovies };
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error("Failed to fetch top rated movies");
+    }
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error("Error fetching top rated movies:", error);
+    return [];
+  }
+}
+
+module.exports = { fetchTrendingMovies, fetchTopRatedMovies };
