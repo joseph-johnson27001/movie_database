@@ -16,11 +16,10 @@ export default {
   },
   data() {
     return {
-      trendingMovies: [], // Initialize as empty array
+      trendingMovies: [],
     };
   },
   async mounted() {
-    // Fetch trending movies and assign to trendingMovies
     this.trendingMovies = await fetchTrendingMovies();
   },
 };

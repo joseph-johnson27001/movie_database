@@ -50,4 +50,27 @@ async function fetchTopRatedMovies() {
   }
 }
 
-module.exports = { fetchTrendingMovies, fetchTopRatedMovies };
+async function fetchNewReleases() {
+  const url = `${BASE_URL}/movie/now_playing`;
+  const options = {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  };
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error("Failed to fetch new releases");
+    }
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error("Error fetching new releases:", error);
+    return [];
+  }
+}
+
+module.exports = { fetchTrendingMovies, fetchTopRatedMovies, fetchNewReleases };

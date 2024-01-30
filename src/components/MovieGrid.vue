@@ -2,7 +2,6 @@
   <div class="movie-grid">
     <div v-for="(movie, index) in movies" :key="index" class="movie-container">
       <div class="movie-item">
-        <!-- Prepend base URL to poster_path -->
         <img
           :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
           :alt="movie.title"
