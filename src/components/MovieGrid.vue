@@ -2,7 +2,12 @@
   <div class="movie-grid">
     <div v-for="(movie, index) in movies" :key="index" class="movie-container">
       <div class="movie-item">
-        <img :src="movie.poster" :alt="movie.title" class="movie-image" />
+        <!-- Prepend base URL to poster_path -->
+        <img
+          :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+          :alt="movie.title"
+          class="movie-image"
+        />
       </div>
       <div class="movie-title">
         <p>{{ movie.title }}</p>
@@ -19,14 +24,6 @@ export default {
       type: Array,
       required: true,
     },
-  },
-  data() {
-    return {
-      // No need to initialize movies here since it's a prop
-    };
-  },
-  mounted() {
-    console.log("Movies prop in MovieGrid:", this.movies);
   },
 };
 </script>
