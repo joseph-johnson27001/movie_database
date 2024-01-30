@@ -1,26 +1,35 @@
 <template>
-  <div class="movie-grid">
-    <div v-for="(movie, index) in movies" :key="index" class="movie-container">
-      <div class="movie-item">
-        <img
-          :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
-          :alt="movie.title"
-          class="movie-image"
-        />
-        <div
-          class="rating-indicator"
-          :style="{
-            '--rating-percent': getRatingPercentage(movie.vote_average),
-            '--rating-color': getRatingColor(movie.vote_average),
-          }"
-        >
-          <span class="percentage">
-            <strong>{{ Math.round(movie.vote_average * 10) }}%</strong>
-          </span>
+  <div>
+    <div v-if="loading" class="loading-animation-container">
+      <div class="loading-animation"></div>
+    </div>
+    <div v-else class="movie-grid">
+      <div
+        v-for="(movie, index) in movies"
+        :key="index"
+        class="movie-container"
+      >
+        <div class="movie-item">
+          <img
+            :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+            :alt="movie.title"
+            class="movie-image"
+          />
+          <div
+            class="rating-indicator"
+            :style="{
+              '--rating-percent': getRatingPercentage(movie.vote_average),
+              '--rating-color': getRatingColor(movie.vote_average),
+            }"
+          >
+            <span class="percentage">
+              <strong>{{ Math.round(movie.vote_average * 10) }}%</strong>
+            </span>
+          </div>
         </div>
-      </div>
-      <div class="movie-title">
-        <p>{{ movie.title }} ({{ getReleaseYear(movie.release_date) }})</p>
+        <div class="movie-title">
+          <p>{{ movie.title }} ({{ getReleaseYear(movie.release_date) }})</p>
+        </div>
       </div>
     </div>
   </div>
@@ -34,6 +43,11 @@ export default {
       type: Array,
       required: true,
     },
+  },
+  data() {
+    return {
+      loading: true,
+    };
   },
   methods: {
     getReleaseYear(releaseDate) {
@@ -50,6 +64,13 @@ export default {
       } else {
         return "#f44336";
       }
+    },
+  },
+  watch: {
+    movies: {
+      handler() {
+        this.loading = false;
+      },
     },
   },
 };
@@ -87,5 +108,26 @@ export default {
 .percentage {
   color: inherit;
   font-size: 0.8em;
+}
+
+.loading-animation-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.loading-animation {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 4px solid #ccc;
+  border-top-color: #2196f3;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
