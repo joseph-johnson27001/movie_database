@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="loading" class="loading-message">Loading...</div>
+    <div v-if="loading" class="loading-animation"></div>
     <div v-else class="movie-grid">
       <div
         v-for="(movie, index) in movies"
@@ -84,9 +84,22 @@ export default {
   text-align: center;
   font-size: 14px;
 }
-.loading-message {
-  text-align: center;
-  font-size: 18px;
-  margin-top: 20px;
+.loading-animation {
+  margin: 20px auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
