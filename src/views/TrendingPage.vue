@@ -21,7 +21,6 @@ export default {
   },
   async mounted() {
     this.trendingMovies = await fetchTrendingMovies();
-    console.log(this.trendingMovies);
   },
 };
 </script>

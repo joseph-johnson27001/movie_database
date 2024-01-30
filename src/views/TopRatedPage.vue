@@ -21,6 +21,7 @@ export default {
   },
   async mounted() {
     this.topRatedMovies = await fetchTopRatedMovies();
+    console.log(this.topRatedMovies);
   },
 };
 </script>

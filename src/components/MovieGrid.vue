@@ -1,22 +1,16 @@
 <template>
-  <div>
-    <div v-if="loading" class="loading-animation"></div>
-    <div v-else class="movie-grid">
-      <div
-        v-for="(movie, index) in movies"
-        :key="index"
-        class="movie-container"
-      >
-        <div class="movie-item">
-          <img
-            :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
-            :alt="movie.title"
-            class="movie-image"
-          />
-        </div>
-        <div class="movie-title">
-          <p>{{ movie.title }} ({{ getReleaseYear(movie.release_date) }})</p>
-        </div>
+  <div class="movie-grid">
+    <div v-for="(movie, index) in movies" :key="index" class="movie-container">
+      <div class="movie-item">
+        <img
+          :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+          :alt="movie.title"
+          class="movie-image"
+        />
+      </div>
+      <div class="movie-title">
+        <p>{{ movie.title }} ({{ getReleaseYear(movie.release_date) }})</p>
+        <p>{{ displayVoteAverage(movie.vote_average) }}</p>
       </div>
     </div>
   </div>
@@ -31,14 +25,12 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      loading: true,
-    };
-  },
   methods: {
     getReleaseYear(releaseDate) {
       return new Date(releaseDate).getFullYear();
+    },
+    displayVoteAverage(voteAverage) {
+      return `${(voteAverage * 10).toFixed(1)}%`; // Convert vote_average to percentage
     },
   },
   watch: {
