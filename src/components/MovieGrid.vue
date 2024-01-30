@@ -28,7 +28,12 @@
           </div>
         </div>
         <div class="movie-title">
-          <p>{{ movie.title }} ({{ getReleaseYear(movie.release_date) }})</p>
+          <p>
+            {{ movie.title }}
+            <template v-if="movie.release_date">
+              ({{ getReleaseYear(movie.release_date) }})
+            </template>
+          </p>
         </div>
       </div>
     </div>
