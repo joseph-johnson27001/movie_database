@@ -3,40 +3,42 @@
     <div v-if="loading" class="loading-animation-container">
       <div class="loading-animation"></div>
     </div>
-    <div v-else class="movie-grid">
-      <div
-        v-for="(movie, index) in movies"
-        :key="index"
-        class="movie-container"
-      >
-        <div class="movie-item">
-          <img
-            :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
-            :alt="movie.title"
-            class="movie-image"
-          />
-          <div
-            v-if="movie.vote_count != 0"
-            class="rating-indicator"
-            :style="{
-              '--rating-percent': getRatingPercentage(movie.vote_average),
-              '--rating-color': getRatingColor(movie.vote_average),
-            }"
-          >
-            <span class="percentage">
-              <strong>{{ Math.round(movie.vote_average * 10) }}%</strong>
-            </span>
+    <div v-else>
+      <router-link to="/movie" class="movie-grid">
+        <div
+          v-for="(movie, index) in movies"
+          :key="index"
+          class="movie-container"
+        >
+          <div class="movie-item">
+            <img
+              :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+              :alt="movie.title"
+              class="movie-image"
+            />
+            <div
+              v-if="movie.vote_count != 0"
+              class="rating-indicator"
+              :style="{
+                '--rating-percent': getRatingPercentage(movie.vote_average),
+                '--rating-color': getRatingColor(movie.vote_average),
+              }"
+            >
+              <span class="percentage">
+                <strong>{{ Math.round(movie.vote_average * 10) }}%</strong>
+              </span>
+            </div>
+          </div>
+          <div class="movie-title">
+            <p>
+              {{ movie.title }}
+              <template v-if="movie.release_date">
+                ({{ getReleaseYear(movie.release_date) }})
+              </template>
+            </p>
           </div>
         </div>
-        <div class="movie-title">
-          <p>
-            {{ movie.title }}
-            <template v-if="movie.release_date">
-              ({{ getReleaseYear(movie.release_date) }})
-            </template>
-          </p>
-        </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -77,7 +79,6 @@ export default {
       handler() {
         this.loading = false;
       },
-      // immediate: true,
     },
   },
 };
