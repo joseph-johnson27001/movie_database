@@ -50,6 +50,7 @@ export default {
   border-radius: 8px;
   padding: 10px;
   background: white;
+  cursor: pointer;
 }
 
 .movie-image {

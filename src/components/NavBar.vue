@@ -3,17 +3,23 @@
     <div class="navigation-container">
       <div class="main-container">
         <ul class="nav-btn-container">
-          <li @click="setActive('Home')">
-            <a href="#" :class="{ active: activeItem === 'Home' }">Home</a>
-          </li>
-          <li @click="setActive('New Releases')">
-            <a href="#" :class="{ active: activeItem === 'New Releases' }"
-              >New Releases</a
+          <li>
+            <router-link to="/" :class="{ active: isActive('Home') }"
+              >Home</router-link
             >
           </li>
-          <li @click="setActive('Trending')">
-            <a href="#" :class="{ active: activeItem === 'Trending' }"
-              >Trending</a
+          <li>
+            <router-link
+              to="/new-releases"
+              :class="{ active: isActive('New Releases') }"
+              >New Releases</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              to="/trending"
+              :class="{ active: isActive('Trending') }"
+              >Trending</router-link
             >
           </li>
         </ul>
@@ -27,19 +33,13 @@
 <script>
 export default {
   name: "NavBar",
-  data() {
-    return {
-      activeItem: "Home",
-    };
-  },
   methods: {
-    setActive(item) {
-      this.activeItem = item;
+    isActive(item) {
+      return this.$route.name === item;
     },
   },
 };
 </script>
-
 <style scoped>
 nav {
   background-color: #0d253f;

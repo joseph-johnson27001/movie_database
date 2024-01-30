@@ -5,7 +5,7 @@
       <SearchBar />
     </div>
     <main>
-      <HomeView />
+      <router-view />
     </main>
   </div>
 </template>
@@ -13,14 +13,12 @@
 <script>
 import NavBar from "./components/NavBar.vue";
 import SearchBar from "./components/SearchBar.vue";
-import HomeView from "./views/HomePage.vue";
 
 export default {
   name: "App",
   components: {
     NavBar,
     SearchBar,
-    HomeView,
   },
 };
 </script>
