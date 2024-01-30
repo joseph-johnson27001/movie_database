@@ -3,6 +3,7 @@ import HomePage from "../views/HomePage.vue";
 import NewReleasesPage from "../views/NewReleasesPage.vue";
 import TrendingPage from "../views/TrendingPage.vue";
 import TopRatedPage from "../views/TopRatedPage.vue";
+import MoviePage from "../views/MoviePage.vue";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: "/top-rated",
     name: "Top Rated",
     component: TopRatedPage,
+  },
+  {
+    path: "/movie",
+    name: "Movie",
+    component: MoviePage,
   },
 ];
 
