@@ -20,7 +20,9 @@ export default {
   },
   methods: {
     searchMovies() {
-      this.$emit("search", this.query);
+      if (this.query.length !== 0) {
+        this.$emit("search", this.query);
+      }
     },
   },
 };
