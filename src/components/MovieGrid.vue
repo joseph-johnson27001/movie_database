@@ -77,7 +77,7 @@ export default {
       handler() {
         this.loading = false;
       },
-      immediate: true,
+      // immediate: true,
     },
   },
 };
@@ -132,8 +132,11 @@ export default {
 
 .loading-animation-container {
   width: 100%;
+  height: 100%;
+  min-height: 70vh;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .loading-animation {
