@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
 import { fetchTrendingMovies } from "@/services/movieService.js";
 import MovieGrid from "@/components/MovieGrid.vue";
 
@@ -15,16 +14,14 @@ export default {
   components: {
     MovieGrid,
   },
-  setup() {
-    const trendingMovies = ref([]);
-
-    onMounted(async () => {
-      trendingMovies.value = await fetchTrendingMovies();
-    });
-
+  data() {
     return {
-      trendingMovies,
+      trendingMovies: [], // Initialize as empty array
     };
+  },
+  async mounted() {
+    // Fetch trending movies and assign to trendingMovies
+    this.trendingMovies = await fetchTrendingMovies();
   },
 };
 </script>

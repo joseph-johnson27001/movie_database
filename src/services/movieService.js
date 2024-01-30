@@ -20,7 +20,6 @@ async function fetchTrendingMovies() {
       throw new Error("Failed to fetch trending movies");
     }
     const data = await response.json();
-    console.log(data);
     return data.results; // Assuming the API response contains a 'results' array of movies
   } catch (error) {
     console.error("Error fetching trending movies:", error);
