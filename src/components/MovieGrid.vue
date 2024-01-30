@@ -16,6 +16,7 @@
             class="movie-image"
           />
           <div
+            v-if="movie.vote_count != 0"
             class="rating-indicator"
             :style="{
               '--rating-percent': getRatingPercentage(movie.vote_average),
