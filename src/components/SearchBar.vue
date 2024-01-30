@@ -1,6 +1,11 @@
 <template>
   <div class="search-bar">
-    <input type="text" placeholder="Search movies..." v-model="query" />
+    <input
+      type="text"
+      placeholder="Search movies..."
+      v-model="query"
+      @keyup.enter="searchMovies"
+    />
     <button @click="searchMovies">Search</button>
   </div>
 </template>
