@@ -11,7 +11,7 @@ const routes = [
   },
   {
     path: "/new-releases",
-    name: "NewReleases",
+    name: "New Releases",
     component: NewReleasesPage,
   },
   {
