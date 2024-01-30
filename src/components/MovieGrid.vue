@@ -7,10 +7,20 @@
           :alt="movie.title"
           class="movie-image"
         />
+        <div
+          class="rating-indicator"
+          :style="{
+            '--rating-percent': getRatingPercentage(movie.vote_average),
+            '--rating-color': getRatingColor(movie.vote_average),
+          }"
+        >
+          <span class="percentage">
+            <strong>{{ Math.round(movie.vote_average * 10) }}%</strong>
+          </span>
+        </div>
       </div>
       <div class="movie-title">
         <p>{{ movie.title }} ({{ getReleaseYear(movie.release_date) }})</p>
-        <p>{{ displayVoteAverage(movie.vote_average) }}</p>
       </div>
     </div>
   </div>
@@ -29,15 +39,17 @@ export default {
     getReleaseYear(releaseDate) {
       return new Date(releaseDate).getFullYear();
     },
-    displayVoteAverage(voteAverage) {
-      return `${(voteAverage * 10).toFixed(1)}%`; // Convert vote_average to percentage
+    getRatingPercentage(voteAverage) {
+      return Math.round(voteAverage * 10);
     },
-  },
-  watch: {
-    movies: {
-      handler() {
-        this.loading = false;
-      },
+    getRatingColor(voteAverage) {
+      if (voteAverage >= 7.5) {
+        return "#4caf50";
+      } else if (voteAverage >= 5) {
+        return "#ffc107";
+      } else {
+        return "#f44336";
+      }
     },
   },
 };
@@ -51,19 +63,7 @@ export default {
 }
 
 .movie-item {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  background: white;
-  cursor: pointer;
-  transition: transform 0.1s ease-in-out, border 0.1s ease-in-out,
-    box-shadow 0.1s ease-in-out;
-}
-
-.movie-item:hover {
-  transform: scale(1.05);
-  border: 1px solid #3498db;
-  box-shadow: 0 0 5px rgba(52, 152, 219, 0.7);
+  position: relative;
 }
 
 .movie-image {
@@ -71,27 +71,21 @@ export default {
   border-radius: 8px;
 }
 
-.movie-title {
-  margin-top: 10px;
-  text-align: center;
-  font-size: 14px;
-}
-.loading-animation {
-  margin: 20px auto;
-  width: 40px;
-  height: 40px;
+.rating-indicator {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #3498db;
-  animation: spin 1s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--rating-color);
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.percentage {
+  color: inherit;
+  font-size: 0.8em;
 }
 </style>
