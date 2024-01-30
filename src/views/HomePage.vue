@@ -3,7 +3,7 @@
     <div class="search">
       <SearchBar @search="fetchSearchResults" />
     </div>
-    <div v-if="searchResults.length > 0">
+    <div v-show="showGrid">
       <MovieGrid :movies="searchResults" />
     </div>
   </div>
@@ -11,7 +11,7 @@
 
 <script>
 import SearchBar from "@/components/SearchBar.vue";
-import MovieGrid from "@/components/MovieGrid.vue"; // Import MovieGrid component
+import MovieGrid from "@/components/MovieGrid.vue";
 import { searchMovies } from "@/services/movieService.js";
 
 export default {
@@ -23,11 +23,13 @@ export default {
   data() {
     return {
       searchResults: [],
+      showGrid: false,
     };
   },
   methods: {
     async fetchSearchResults(query) {
       try {
+        this.showGrid = true;
         const searchResults = await searchMovies(query);
         this.searchResults = searchResults;
         console.log(this.searchResults);
