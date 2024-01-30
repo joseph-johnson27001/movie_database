@@ -1,13 +1,23 @@
 <template>
   <div class="search-bar">
-    <input type="text" placeholder="Search movies..." />
-    <button>Search</button>
+    <input type="text" placeholder="Search movies..." v-model="query" />
+    <button @click="searchMovies">Search</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "SearchBar",
+  data() {
+    return {
+      query: "",
+    };
+  },
+  methods: {
+    searchMovies() {
+      this.$emit("search", this.query);
+    },
+  },
 };
 </script>
 
@@ -42,7 +52,6 @@ button {
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.2s;
-  /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.4); */
 }
 
 button:hover {

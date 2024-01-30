@@ -73,4 +73,32 @@ async function fetchNewReleases() {
   }
 }
 
-module.exports = { fetchTrendingMovies, fetchTopRatedMovies, fetchNewReleases };
+async function searchMovies(query) {
+  const url = `${BASE_URL}/search/movie?query=${encodeURIComponent(query)}`;
+  const options = {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  };
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error("Failed to search movies");
+    }
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error("Error searching movies:", error);
+    return [];
+  }
+}
+
+module.exports = {
+  fetchTrendingMovies,
+  fetchTopRatedMovies,
+  fetchNewReleases,
+  searchMovies,
+};

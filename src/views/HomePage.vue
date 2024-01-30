@@ -1,20 +1,40 @@
 <template>
   <div>
     <div class="search">
-      <SearchBar />
+      <SearchBar @search="fetchSearchResults" />
+    </div>
+    <div v-if="searchResults.length > 0">
+      <MovieGrid :movies="searchResults" />
     </div>
   </div>
 </template>
 
 <script>
 import SearchBar from "@/components/SearchBar.vue";
-// import MovieGrid from "@/components/MovieGrid.vue";
+import MovieGrid from "@/components/MovieGrid.vue"; // Import MovieGrid component
+import { searchMovies } from "@/services/movieService.js";
 
 export default {
   name: "HomePage",
   components: {
-    // MovieGrid,
     SearchBar,
+    MovieGrid,
+  },
+  data() {
+    return {
+      searchResults: [],
+    };
+  },
+  methods: {
+    async fetchSearchResults(query) {
+      try {
+        const searchResults = await searchMovies(query);
+        this.searchResults = searchResults;
+        console.log(this.searchResults);
+      } catch (error) {
+        console.error("Error fetching search results:", error);
+      }
+    },
   },
 };
 </script>

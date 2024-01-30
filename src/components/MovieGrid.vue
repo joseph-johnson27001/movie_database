@@ -71,6 +71,7 @@ export default {
       handler() {
         this.loading = false;
       },
+      immediate: true,
     },
   },
 };
