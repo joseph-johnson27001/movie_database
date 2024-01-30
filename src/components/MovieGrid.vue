@@ -85,6 +85,19 @@ export default {
 
 .movie-item {
   position: relative;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  background: white;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out, border 0.1s ease-in-out,
+    box-shadow 0.1s ease-in-out;
+}
+
+.movie-item:hover {
+  transform: scale(1.05);
+  border: 1px solid #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.7);
 }
 
 .movie-image {
@@ -94,8 +107,8 @@ export default {
 
 .rating-indicator {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 20px;
+  right: 20px;
   width: 30px;
   height: 30px;
   border-radius: 50%;
