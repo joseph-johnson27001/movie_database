@@ -9,7 +9,7 @@
         />
       </div>
       <div class="movie-title">
-        <p>{{ movie.title }}</p>
+        <p>{{ movie.title }} ({{ getReleaseYear(movie.release_date) }})</p>
       </div>
     </div>
   </div>
@@ -22,6 +22,11 @@ export default {
     movies: {
       type: Array,
       required: true,
+    },
+  },
+  methods: {
+    getReleaseYear(releaseDate) {
+      return new Date(releaseDate).getFullYear();
     },
   },
 };
