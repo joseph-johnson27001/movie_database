@@ -1,9 +1,6 @@
 <template>
   <div id="app">
     <NavBar />
-    <div class="search">
-      <SearchBar />
-    </div>
     <main>
       <router-view />
     </main>
@@ -12,13 +9,11 @@
 
 <script>
 import NavBar from "./components/NavBar.vue";
-import SearchBar from "./components/SearchBar.vue";
 
 export default {
   name: "App",
   components: {
     NavBar,
-    SearchBar,
   },
 };
 </script>
@@ -40,11 +35,5 @@ main {
   margin: 0px auto;
   min-height: 100vh;
   border-radius: 5px;
-}
-
-.search {
-  max-width: 1200px;
-  margin: 0px auto;
-  padding: 20px;
 }
 </style>

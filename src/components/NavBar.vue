@@ -5,7 +5,7 @@
         <ul class="nav-btn-container">
           <li>
             <router-link to="/" :class="{ active: isActive('Home') }"
-              >Home</router-link
+              >Search</router-link
             >
           </li>
           <li>
