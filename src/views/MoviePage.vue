@@ -1,55 +1,51 @@
 <template>
   <div class="movie-page">
-    <!-- Movie Title -->
-    <h1 class="movie-title">{{ movie.title }}</h1>
+    <div class="movie-header">
+      <!-- Display movie title -->
+      <h1 class="movie-title">{{ movie.title }}</h1>
+      <!-- Display movie poster -->
+      <img :src="movie.poster" :alt="movie.title" class="movie-poster" />
+    </div>
 
-    <!-- Movie Poster -->
-    <img :src="movie.poster" :alt="movie.title" class="movie-poster" />
-
-    <!-- Movie Details -->
     <div class="movie-details">
-      <!-- Release Date -->
+      <!-- Display movie release date -->
       <p><strong>Release Date:</strong> {{ movie.releaseDate }}</p>
-
-      <!-- Overview -->
+      <!-- Display movie overview -->
       <p><strong>Overview:</strong> {{ movie.overview }}</p>
-
-      <!-- Genres -->
+      <!-- Display movie genres -->
       <p><strong>Genres:</strong> {{ movie.genres.join(", ") }}</p>
-
-      <!-- Runtime -->
+      <!-- Display movie runtime -->
       <p><strong>Runtime:</strong> {{ movie.runtime }} minutes</p>
-
-      <!-- Rating -->
+      <!-- Display movie rating -->
       <p><strong>Rating:</strong> {{ movie.rating }}/10</p>
-
-      <!-- Cast -->
+      <!-- Display movie cast -->
       <p><strong>Cast:</strong> {{ movie.cast.join(", ") }}</p>
-
-      <!-- Director -->
+      <!-- Display movie director -->
       <p><strong>Director:</strong> {{ movie.director }}</p>
-
-      <!-- Production Companies -->
+      <!-- Display movie production companies -->
       <p>
         <strong>Production Companies:</strong>
         {{ movie.productionCompanies.join(", ") }}
       </p>
-
-      <!-- Budget -->
-      <p v-if="movie.budget"><strong>Budget:</strong> ${{ movie.budget }}</p>
-
-      <!-- Revenue -->
-      <p v-if="movie.revenue"><strong>Revenue:</strong> ${{ movie.revenue }}</p>
+      <!-- Display movie budget -->
+      <p><strong>Budget:</strong> ${{ movie.budget }}</p>
+      <!-- Display movie revenue -->
+      <p><strong>Revenue:</strong> ${{ movie.revenue }}</p>
     </div>
 
-    <!-- Similar Movies -->
-    <div class="similar-movies">
-      <h2>Similar Movies</h2>
-      <ul>
-        <li v-for="(similarMovie, index) in movie.similarMovies" :key="index">
-          {{ similarMovie.title }}
-        </li>
-      </ul>
+    <div class="movie-trailers">
+      <!-- Display movie trailers -->
+      <h2>Trailers</h2>
+      <div v-if="movie.trailers.length > 0" class="trailers-container">
+        <iframe
+          v-for="(trailer, index) in movie.trailers"
+          :key="index"
+          :src="'https://www.youtube.com/embed/' + trailer.key"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p v-else>No trailers available</p>
     </div>
   </div>
 </template>
@@ -60,18 +56,22 @@ export default {
   data() {
     return {
       movie: {
-        title: "Dummy Movie",
+        title: "Sample Movie",
         poster: "https://via.placeholder.com/300",
         releaseDate: "2023-01-01",
         overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        genres: ["Action", "Adventure", "Sci-Fi"],
+        genres: ["Action", "Adventure", "Science Fiction"],
         runtime: 120,
         rating: 7.5,
         cast: ["Actor 1", "Actor 2", "Actor 3"],
         director: "Director Name",
-        productionCompanies: ["Company 1", "Company 2"],
-        budget: 100000000,
-        revenue: 500000000,
+        productionCompanies: ["Production Company 1", "Production Company 2"],
+        budget: 10000000,
+        revenue: 50000000,
+        trailers: [
+          { key: "trailer_key_1" }, // Sample trailer key
+          { key: "trailer_key_2" }, // Sample trailer key
+        ],
         similarMovies: [
           { title: "Similar Movie 1" },
           { title: "Similar Movie 2" },
@@ -84,41 +84,40 @@ export default {
 </script>
 
 <style scoped>
-.movie-page {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+/* Styles for movie header */
+.movie-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .movie-title {
-  font-size: 24px;
-  margin-bottom: 20px;
+  margin: 0;
 }
 
 .movie-poster {
+  width: 200px;
+  height: auto;
+}
+
+/* Styles for movie details */
+.movie-details {
+  margin-top: 20px;
+}
+
+/* Styles for movie trailers */
+.movie-trailers {
+  margin-top: 20px;
+}
+
+.trailers-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+iframe {
   width: 100%;
-  margin-bottom: 20px;
-}
-
-.movie-details p {
-  margin-bottom: 10px;
-}
-
-.similar-movies {
-  margin-top: 30px;
-}
-
-.similar-movies h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.similar-movies ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.similar-movies li {
-  margin-bottom: 5px;
+  height: 200px;
 }
 </style>
