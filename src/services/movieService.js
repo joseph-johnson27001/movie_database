@@ -119,10 +119,34 @@ async function fetchMovieDetails(movieId) {
   }
 }
 
+async function fetchUpcomingMovies() {
+  const url = `${BASE_URL}/movie/upcoming`;
+  const options = {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  };
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error("Failed to fetch upcoming movies");
+    }
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error("Error fetching upcoming movies:", error);
+    return [];
+  }
+}
+
 module.exports = {
   fetchTrendingMovies,
   fetchTopRatedMovies,
   fetchNewReleases,
   searchMovies,
-  fetchMovieDetails, // Add this line
+  fetchMovieDetails,
+  fetchUpcomingMovies,
 };

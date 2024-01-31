@@ -8,30 +8,40 @@
               >Search</router-link
             >
           </li>
-          <li>
-            <router-link
-              to="/new-releases"
-              :class="{ active: isActive('New Releases') }"
-              >New Releases</router-link
-            >
-          </li>
-          <li>
-            <router-link
-              to="/top-rated"
-              :class="{ active: isActive('Top Rated') }"
-              >Top Rated</router-link
-            >
-          </li>
-          <li>
-            <router-link
-              to="/trending"
-              :class="{ active: isActive('Trending') }"
-              >Trending</router-link
-            >
-          </li>
         </ul>
         <p>YAY Movies!</p>
-        <div></div>
+        <div>
+          <ul class="nav-btn-container">
+            <li>
+              <router-link
+                to="/new-releases"
+                :class="{ active: isActive('New Releases') }"
+                >New Releases</router-link
+              >
+            </li>
+            <li>
+              <router-link
+                to="/top-rated"
+                :class="{ active: isActive('Top Rated') }"
+                >Top Rated</router-link
+              >
+            </li>
+            <li>
+              <router-link
+                to="/trending"
+                :class="{ active: isActive('Trending') }"
+                >Trending</router-link
+              >
+            </li>
+            <li>
+              <router-link
+                to="/upcoming"
+                :class="{ active: isActive('Upcoming') }"
+                >Upcoming</router-link
+              >
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </nav>
@@ -61,8 +71,10 @@ nav {
 }
 
 .main-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0px 15px;
 }
 
 ul {

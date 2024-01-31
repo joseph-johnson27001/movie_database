@@ -57,7 +57,8 @@ export default {
     const movieId = this.$route.params.id;
     const movieDetails = await fetchMovieDetails(movieId);
     if (movieDetails) {
-      this.movie = movieDetails;
+      this.movie = await movieDetails;
+      console.log(this.movie);
     }
   },
   methods: {
@@ -89,7 +90,7 @@ export default {
   border-radius: 5px;
   background-size: cover;
   background-position: center;
-  min-height: 400px;
+  min-height: 500px;
   height: auto;
 }
 
