@@ -149,6 +149,12 @@ export default {
   animation: spin 1s infinite linear;
 }
 
+a:-webkit-any-link {
+  color: inherit !important;
+  cursor: inherit !important;
+  text-decoration: inherit !important;
+}
+
 @keyframes spin {
   100% {
     transform: rotate(360deg);
