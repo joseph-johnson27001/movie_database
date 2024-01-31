@@ -65,7 +65,6 @@ nav {
   background-color: #0d253f;
   color: white;
   padding: 10px 0;
-  border-bottom: 1px solid white;
 }
 
 .navigation-container {

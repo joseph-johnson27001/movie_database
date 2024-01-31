@@ -1,6 +1,6 @@
 <template>
   <div class="upcoming-page">
-    <h1>Upcoming Movies</h1>
+    <h2>Upcoming Movies</h2>
     <MovieGrid :movies="upcomingMovies" />
   </div>
 </template>

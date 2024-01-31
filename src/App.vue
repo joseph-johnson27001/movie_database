@@ -34,6 +34,5 @@ main {
   max-width: 1200px;
   margin: 0px auto;
   min-height: 100vh;
-  border-radius: 5px;
 }
 </style>
