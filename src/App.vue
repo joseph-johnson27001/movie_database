@@ -15,6 +15,21 @@ export default {
   components: {
     NavBar,
   },
+  watch: {
+    $route(to, from) {
+      if (to.path !== from.path) {
+        this.scrollToTop();
+      }
+    },
+  },
+  methods: {
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    },
+  },
 };
 </script>
 
