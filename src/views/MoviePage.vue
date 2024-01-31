@@ -30,8 +30,8 @@
         <strong>Production Companies:</strong>
         {{ getProductionCompanies(movie.production_companies) }}
       </p>
-      <p><strong>Budget:</strong> ${{ movie.budget }}</p>
-      <p><strong>Revenue:</strong> ${{ movie.revenue }}</p>
+      <p v-if="movie.budget"><strong>Budget:</strong> ${{ movie.budget }}</p>
+      <p v-if="movie.revenue"><strong>Revenue:</strong> ${{ movie.revenue }}</p>
     </div>
 
     <!-- Link to movie page -->

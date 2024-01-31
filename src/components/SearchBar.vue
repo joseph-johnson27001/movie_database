@@ -37,13 +37,14 @@ export default {
 input {
   flex: 1;
   padding: 15px 15px;
-  border: 1px solid #ccc;
+  border: 1px solid darkgrey;
   border-radius: 20px;
   margin-right: 10px;
   outline: none;
   font-family: "Quicksand", sans-serif;
   font-weight: 400;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); */
+  background-color: #f7f7f7;
 }
 
 input:focus {
