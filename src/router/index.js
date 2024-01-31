@@ -27,7 +27,7 @@ const routes = [
     component: TopRatedPage,
   },
   {
-    path: "/movie",
+    path: "/movie/:id",
     name: "Movie",
     component: MoviePage,
   },

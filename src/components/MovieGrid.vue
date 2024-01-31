@@ -7,7 +7,7 @@
       <router-link
         v-for="(movie, index) in movies"
         :key="index"
-        :to="'/movie/'"
+        :to="'/movie/' + movie.id"
       >
         <div class="movie-container">
           <div class="movie-item">
