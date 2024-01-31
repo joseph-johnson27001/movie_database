@@ -4,40 +4,43 @@
       <div class="main-container">
         <ul class="nav-btn-container">
           <li>
-            <router-link to="/" :class="{ active: isActive('Home') }"
-              >Search</router-link
+            <router-link
+              to="/new-releases"
+              :class="{ active: isActive('New Releases') }"
+              >New Releases</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              to="/top-rated"
+              :class="{ active: isActive('Top Rated') }"
+              >Top Rated</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              to="/trending"
+              :class="{ active: isActive('Trending') }"
+              >Trending</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              to="/upcoming"
+              :class="{ active: isActive('Upcoming') }"
+              >Upcoming</router-link
             >
           </li>
         </ul>
-        <p>YAY Movies!</p>
-        <div>
+
+        <div class="nav-btn-container heading">
+          <p>YAY Movies!</p>
+        </div>
+        <div class="search-container">
           <ul class="nav-btn-container">
-            <li>
-              <router-link
-                to="/new-releases"
-                :class="{ active: isActive('New Releases') }"
-                >New Releases</router-link
-              >
-            </li>
-            <li>
-              <router-link
-                to="/top-rated"
-                :class="{ active: isActive('Top Rated') }"
-                >Top Rated</router-link
-              >
-            </li>
-            <li>
-              <router-link
-                to="/trending"
-                :class="{ active: isActive('Trending') }"
-                >Trending</router-link
-              >
-            </li>
-            <li>
-              <router-link
-                to="/upcoming"
-                :class="{ active: isActive('Upcoming') }"
-                >Upcoming</router-link
+            <li class="search-btn">
+              <router-link to="/" :class="{ active: isActive('Search') }"
+                >Search</router-link
               >
             </li>
           </ul>
@@ -71,10 +74,8 @@ nav {
 }
 
 .main-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0px 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 ul {
@@ -85,6 +86,16 @@ ul {
 .nav-btn-container {
   display: flex;
   margin-left: 10px;
+  align-items: center;
+}
+
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.heading {
+  justify-content: center;
 }
 
 li {
