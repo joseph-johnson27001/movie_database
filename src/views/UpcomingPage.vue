@@ -34,8 +34,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.upcoming-page {
-  padding: 20px;
-}
-</style>
+<style scoped></style>
