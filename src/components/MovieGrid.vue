@@ -3,13 +3,13 @@
     <div v-if="loading" class="loading-animation-container">
       <div class="loading-animation"></div>
     </div>
-    <div v-else>
-      <router-link to="/movie" class="movie-grid">
-        <div
-          v-for="(movie, index) in movies"
-          :key="index"
-          class="movie-container"
-        >
+    <div v-else class="movie-grid">
+      <router-link
+        v-for="(movie, index) in movies"
+        :key="index"
+        :to="'/movie/'"
+      >
+        <div class="movie-container">
           <div class="movie-item">
             <img
               :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
