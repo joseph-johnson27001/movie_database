@@ -39,7 +39,7 @@
         <div class="search-container">
           <ul class="nav-btn-container">
             <li class="search-btn">
-              <router-link to="/" :class="{ active: isActive('Search') }"
+              <router-link to="/" :class="{ active: isActive('Home') }"
                 >Search</router-link
               >
             </li>

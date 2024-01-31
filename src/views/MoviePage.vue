@@ -35,7 +35,7 @@
     </div>
 
     <!-- Link to movie page -->
-    <div class="movie-link">
+    <div class="movie-link" v-if="movie.homepage">
       <a :href="movie.homepage" target="_blank" rel="noopener noreferrer"
         >Visit Movie Page</a
       >
