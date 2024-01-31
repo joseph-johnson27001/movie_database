@@ -1,51 +1,36 @@
 <template>
   <div class="movie-page">
-    <div class="movie-header">
-      <!-- Display movie title -->
+    <div class="dark-area">
       <h1 class="movie-title">{{ movie.title }}</h1>
-      <!-- Display movie poster -->
-      <img :src="movie.poster" :alt="movie.title" class="movie-poster" />
+
+      <div class="poster-trailer-container">
+        <img :src="movie.poster" :alt="movie.title" class="movie-poster" />
+
+        <div v-if="movie.trailers.length > 0" class="trailer-container">
+          <iframe
+            :src="'https://www.youtube.com/embed/' + movie.trailers[0].key"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <p v-else>No trailer available</p>
+      </div>
     </div>
 
     <div class="movie-details">
-      <!-- Display movie release date -->
       <p><strong>Release Date:</strong> {{ movie.releaseDate }}</p>
-      <!-- Display movie overview -->
       <p><strong>Overview:</strong> {{ movie.overview }}</p>
-      <!-- Display movie genres -->
       <p><strong>Genres:</strong> {{ movie.genres.join(", ") }}</p>
-      <!-- Display movie runtime -->
       <p><strong>Runtime:</strong> {{ movie.runtime }} minutes</p>
-      <!-- Display movie rating -->
       <p><strong>Rating:</strong> {{ movie.rating }}/10</p>
-      <!-- Display movie cast -->
       <p><strong>Cast:</strong> {{ movie.cast.join(", ") }}</p>
-      <!-- Display movie director -->
       <p><strong>Director:</strong> {{ movie.director }}</p>
-      <!-- Display movie production companies -->
       <p>
         <strong>Production Companies:</strong>
         {{ movie.productionCompanies.join(", ") }}
       </p>
-      <!-- Display movie budget -->
       <p><strong>Budget:</strong> ${{ movie.budget }}</p>
-      <!-- Display movie revenue -->
       <p><strong>Revenue:</strong> ${{ movie.revenue }}</p>
-    </div>
-
-    <div class="movie-trailers">
-      <!-- Display movie trailers -->
-      <h2>Trailers</h2>
-      <div v-if="movie.trailers.length > 0" class="trailers-container">
-        <iframe
-          v-for="(trailer, index) in movie.trailers"
-          :key="index"
-          :src="'https://www.youtube.com/embed/' + trailer.key"
-          frameborder="0"
-          allowfullscreen
-        ></iframe>
-      </div>
-      <p v-else>No trailers available</p>
     </div>
   </div>
 </template>
@@ -68,10 +53,7 @@ export default {
         productionCompanies: ["Production Company 1", "Production Company 2"],
         budget: 10000000,
         revenue: 50000000,
-        trailers: [
-          { key: "trailer_key_1" }, // Sample trailer key
-          { key: "trailer_key_2" }, // Sample trailer key
-        ],
+        trailers: [{ key: "trailer_key_1" }, { key: "trailer_key_2" }],
         similarMovies: [
           { title: "Similar Movie 1" },
           { title: "Similar Movie 2" },
@@ -84,40 +66,35 @@ export default {
 </script>
 
 <style scoped>
-/* Styles for movie header */
-.movie-header {
+.movie-page {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
-.movie-title {
-  margin: 0;
+.dark-area {
+  background-color: #333333;
+  color: white;
+  padding: 20px;
+}
+
+.poster-trailer-container {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: 20px;
+  align-items: center;
 }
 
 .movie-poster {
-  width: 200px;
-  height: auto;
+  width: 100%;
+  height: 100%;
 }
 
-/* Styles for movie details */
-.movie-details {
-  margin-top: 20px;
-}
-
-/* Styles for movie trailers */
-.movie-trailers {
-  margin-top: 20px;
-}
-
-.trailers-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+.trailer-container {
+  width: 100%;
 }
 
 iframe {
   width: 100%;
-  height: 200px;
+  height: 400px;
 }
 </style>
