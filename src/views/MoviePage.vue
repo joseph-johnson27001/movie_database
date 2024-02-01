@@ -46,7 +46,11 @@
 
     <!-- Link to movie page -->
     <div class="movie-link" v-if="movie.homepage">
-      <a :href="movie.homepage" target="_blank" rel="noopener noreferrer"
+      <a
+        :href="movie.homepage"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="visit-page"
         >Visit Movie Page</a
       >
     </div>
@@ -143,9 +147,14 @@ export default {
 }
 
 a:-webkit-any-link {
-  color: inherit !important;
-  cursor: inherit !important;
-  text-decoration: inherit !important;
+  color: inherit;
+  cursor: inherit;
+  text-decoration: inherit;
+}
+
+.visit-page {
+  cursor: pointer !important;
+  color: #2196f3 !important;
 }
 
 @keyframes spin {

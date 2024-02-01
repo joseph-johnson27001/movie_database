@@ -49,5 +49,6 @@ main {
   max-width: 1200px;
   margin: 0px auto;
   min-height: 100vh;
+  padding-bottom: 20px;
 }
 </style>
