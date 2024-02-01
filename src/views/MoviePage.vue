@@ -1,19 +1,23 @@
 <template>
-  <div class="movie-page">
+  <div v-show="loading" class="loading-animation-container">
+    <div class="loading-animation"></div>
+  </div>
+  <div v-show="!loading" class="movie-page">
     <h2 class="movie-title">{{ movie.title }}</h2>
-    <div
+    <img
       v-if="movie.backdrop_path"
+      :src="'https://image.tmdb.org/t/p/original' + movie.backdrop_path"
       class="jumbo-area"
-      :style="{
-        backgroundImage:
-          'url(https://image.tmdb.org/t/p/original' + movie.backdrop_path + ')',
-      }"
-    ></div>
-    <div
+      alt="Backdrop"
+      @load="imageLoaded"
+    />
+    <img
       v-else
+      src="/movie_camera_poster.JPG"
       class="jumbo-area"
-      :style="{ backgroundImage: 'url(/movie_camera_poster.JPG)' }"
-    ></div>
+      alt="Default Image"
+      @load="imageLoaded"
+    />
 
     <!-- Movie details -->
     <div class="movie-details">
@@ -56,7 +60,9 @@ export default {
   name: "MoviePage",
   data() {
     return {
-      movie: {},
+      movie: false,
+      loading: true,
+      loadedImage: false,
     };
   },
   async created() {
@@ -64,7 +70,9 @@ export default {
     const movieDetails = await fetchMovieDetails(movieId);
     if (movieDetails) {
       this.movie = await movieDetails;
-      console.log(this.movie);
+      if (this.loadedImage) {
+        this.loading = false;
+      }
     }
   },
   methods: {
@@ -77,6 +85,12 @@ export default {
     getProductionCompanies(companies) {
       if (companies) {
         return companies.map((company) => company.name).join(", ");
+      }
+    },
+    imageLoaded() {
+      this.loadedImage = true;
+      if (this.movie) {
+        this.loading = false;
       }
     },
   },
@@ -106,5 +120,35 @@ export default {
 
 .movie-link {
   margin-top: 20px;
+}
+
+.loading-animation-container {
+  width: 100%;
+  height: 100%;
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-animation {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 4px solid #ccc;
+  border-top-color: #2196f3;
+  animation: spin 1s infinite linear;
+}
+
+a:-webkit-any-link {
+  color: inherit !important;
+  cursor: inherit !important;
+  text-decoration: inherit !important;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
