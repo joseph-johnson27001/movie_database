@@ -12,11 +12,17 @@
         <div class="movie-container">
           <div class="movie-item">
             <img
+              v-if="movie.poster_path"
               :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
               :alt="movie.title"
               class="movie-image"
               @load="imageLoaded"
-              @error="imageLoaded"
+            />
+            <img
+              v-else
+              :src="backupImage"
+              class="movie-image"
+              @load="imageLoaded"
             />
             <div
               v-if="movie.vote_count != 0"
@@ -59,6 +65,7 @@ export default {
       loading: true,
       movieLength: 0,
       loadedImages: 0,
+      backupImage: require("@/assets/images/movie_camera_poster.JPG"),
     };
   },
   methods: {
