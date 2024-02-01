@@ -3,14 +3,7 @@
     <button @click="goToPreviousPage" :disabled="currentPage === 1">
       Previous
     </button>
-    <button
-      v-for="pageNumber in visiblePageNumbers"
-      :key="pageNumber"
-      @click="goToPage(pageNumber)"
-      :class="{ active: pageNumber === currentPage }"
-    >
-      {{ pageNumber }}
-    </button>
+
     <button @click="goToNextPage">Next</button>
   </div>
 </template>
@@ -41,32 +34,19 @@ export default {
       currentPage: 1,
     };
   },
-  computed: {
-    visiblePageNumbers() {
-      const from = Math.max(
-        1,
-        this.currentPage - Math.floor(this.visiblePageCount / 2)
-      );
-      const to = Math.min(this.totalPages, from + this.visiblePageCount - 1);
-      return Array.from({ length: to - from + 1 }, (_, index) => from + index);
-    },
-  },
+
   mounted() {
     this.context = this.$route.path;
   },
   methods: {
     async goToPreviousPage() {
-      console.log(this.currentPage);
-      if (this.currentPage > 1) {
-        this.currentPage--;
-        await this.fetchMovies(this.currentPage - 1);
-      }
+      this.currentPage = this.currentPage - 1;
+      await this.fetchMovies(this.currentPage);
     },
-    async goToPage(pageNumber) {
-      await this.fetchMovies(pageNumber);
-    },
+
     async goToNextPage() {
-      this.currentPage++;
+      console.log(this.currentPage);
+      this.currentPage = this.currentPage + 1;
       await this.fetchMovies(this.currentPage);
     },
     async fetchMovies(pageNumber) {
