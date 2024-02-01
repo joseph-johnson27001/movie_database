@@ -43,7 +43,6 @@ input {
   outline: none;
   font-family: "Quicksand", sans-serif;
   font-weight: 400;
-  /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); */
   background-color: #f7f7f7;
 }
 

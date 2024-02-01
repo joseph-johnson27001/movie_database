@@ -50,6 +50,7 @@
     </div>
     <div>
       <pagination-buttons
+        v-if="!this.loading"
         :total-pages="totalPages"
         :visible-page-count="visiblePageCount"
         @movies-fetched="handleMoviesFetched"

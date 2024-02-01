@@ -28,7 +28,6 @@ async function fetchTrendingMovies(page = 1) {
 }
 
 async function fetchTopRatedMovies(page = 1) {
-  console.log("FETCHING TREDNING, INSIDE API");
   const url = `${BASE_URL}/movie/top_rated?page=${page}`;
   const options = {
     method: "GET",
@@ -74,9 +73,9 @@ async function fetchNewReleases(page = 1) {
 }
 
 async function searchMovies(query, page = 1) {
-  const url = `${BASE_URL}/search/movie?query=${encodeURIComponent(
-    query
+  const url = `${BASE_URL}/search/movie?query=${query}
   )}&page=${page}`;
+  console.log(page);
 
   const options = {
     method: "GET",
@@ -122,8 +121,8 @@ async function fetchMovieDetails(movieId) {
   }
 }
 
-async function fetchUpcomingMovies() {
-  const url = `${BASE_URL}/movie/upcoming`;
+async function fetchUpcomingMovies(page = 1) {
+  const url = `${BASE_URL}/movie/upcoming?page=${page}`;
   const options = {
     method: "GET",
     headers: {
