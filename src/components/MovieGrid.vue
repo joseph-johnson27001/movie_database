@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div v-if="loading" class="loading-animation-container">
+    <div v-show="loading" class="loading-animation-container">
       <div class="loading-animation"></div>
     </div>
-    <div v-else class="movie-grid">
+    <div v-show="!loading" class="movie-grid">
       <router-link
         v-for="(movie, index) in movies"
         :key="index"
@@ -15,6 +15,8 @@
               :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
               :alt="movie.title"
               class="movie-image"
+              @load="imageLoaded"
+              @error="imageLoaded"
             />
             <div
               v-if="movie.vote_count != 0"
@@ -55,9 +57,17 @@ export default {
   data() {
     return {
       loading: true,
+      movieLength: 0,
+      loadedImages: 0,
     };
   },
   methods: {
+    imageLoaded() {
+      this.loadedImages++;
+      if (this.loadedImages == this.movieLength && this.loadedImages !== 0) {
+        this.loading = false;
+      }
+    },
     getReleaseYear(releaseDate) {
       return new Date(releaseDate).getFullYear();
     },
@@ -77,7 +87,7 @@ export default {
   watch: {
     movies: {
       handler() {
-        this.loading = false;
+        this.movieLength = this.movies.length;
       },
     },
   },
