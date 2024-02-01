@@ -65,7 +65,7 @@ export default {
       loading: true,
       movieLength: 0,
       loadedImages: 0,
-      backupImage: require("@/assets/images/movie_camera_poster.JPG"),
+      backupImage: "/movie_camera_poster.JPG",
     };
   },
   methods: {
