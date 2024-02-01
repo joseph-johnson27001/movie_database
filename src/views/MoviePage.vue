@@ -13,7 +13,7 @@
     />
     <img
       v-else
-      src="/movie_camera_poster.JPG"
+      src="/jumbo-movie-image.jpg"
       class="jumbo-area"
       alt="Default Image"
       @load="imageLoaded"
