@@ -4,8 +4,8 @@ const API_KEY =
   "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YTUzNWViZmNhMWJjNmY2YjUzODgzZGM2ZWU3YTUwYiIsInN1YiI6IjY1YjMxOTM0ODczZjAwMDE2MmY1OTJiOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.syug0sjXoD5CCS1yvDVMwK9KO5BRdHwN-TX0yTO4gaM";
 const BASE_URL = "https://api.themoviedb.org/3";
 
-async function fetchTrendingMovies() {
-  const url = `${BASE_URL}/trending/movie/week`;
+async function fetchTrendingMovies(page = 1) {
+  const url = `${BASE_URL}/trending/movie/week?page=${page}`;
   const options = {
     method: "GET",
     headers: {
@@ -27,8 +27,8 @@ async function fetchTrendingMovies() {
   }
 }
 
-async function fetchTopRatedMovies() {
-  const url = `${BASE_URL}/movie/top_rated`;
+async function fetchTopRatedMovies(page = 1) {
+  const url = `${BASE_URL}/movie/top_rated?page=${page}`;
   const options = {
     method: "GET",
     headers: {
@@ -49,9 +49,8 @@ async function fetchTopRatedMovies() {
     return [];
   }
 }
-
-async function fetchNewReleases() {
-  const url = `${BASE_URL}/movie/now_playing`;
+async function fetchNewReleases(page = 1) {
+  const url = `${BASE_URL}/movie/now_playing?page=${page}`;
   const options = {
     method: "GET",
     headers: {
@@ -73,8 +72,11 @@ async function fetchNewReleases() {
   }
 }
 
-async function searchMovies(query) {
-  const url = `${BASE_URL}/search/movie?query=${encodeURIComponent(query)}`;
+async function searchMovies(query, page = 1) {
+  const url = `${BASE_URL}/search/movie?query=${encodeURIComponent(
+    query
+  )}&page=${page}`;
+
   const options = {
     method: "GET",
     headers: {
