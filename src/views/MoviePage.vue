@@ -112,6 +112,8 @@ export default {
   background-position: center;
   min-height: 500px;
   height: auto;
+  max-width: 1160px;
+  max-height: 650px;
 }
 
 .movie-details {
