@@ -1,7 +1,10 @@
 <template>
   <div>
     <h2>Top Rated</h2>
-    <MovieGrid :movies="topRatedMovies" />
+    <MovieGrid
+      :movies="topRatedMovies"
+      @update:movies="topRatedMovies = $event"
+    />
   </div>
 </template>
 

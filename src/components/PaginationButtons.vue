@@ -1,6 +1,8 @@
 <template>
   <div class="pagination-buttons">
-    <button @click="goToPreviousPage">Previous</button>
+    <button @click="goToPreviousPage" :disabled="currentPage === 1">
+      Previous
+    </button>
     <button
       v-for="pageNumber in visiblePageNumbers"
       :key="pageNumber"
@@ -14,12 +16,16 @@
 </template>
 
 <script>
+import {
+  fetchTrendingMovies,
+  fetchTopRatedMovies,
+  fetchNewReleases,
+  fetchUpcomingMovies,
+  searchMovies,
+} from "../services/movieService";
+
 export default {
   props: {
-    currentPage: {
-      type: Number,
-      required: true,
-    },
     totalPages: {
       type: Number,
       required: true,
@@ -28,6 +34,12 @@ export default {
       type: Number,
       default: 3,
     },
+  },
+  data() {
+    return {
+      context: "",
+      currentPage: 1,
+    };
   },
   computed: {
     visiblePageNumbers() {
@@ -39,15 +51,55 @@ export default {
       return Array.from({ length: to - from + 1 }, (_, index) => from + index);
     },
   },
+  mounted() {
+    this.context = this.$route.path;
+  },
   methods: {
-    goToPreviousPage() {
-      this.$emit("go-to-page", this.currentPage - 1);
+    async goToPreviousPage() {
+      console.log(this.currentPage);
+      if (this.currentPage > 1) {
+        this.currentPage--;
+        await this.fetchMovies(this.currentPage - 1);
+      }
     },
-    goToPage(pageNumber) {
-      this.$emit("go-to-page", pageNumber);
+    async goToPage(pageNumber) {
+      await this.fetchMovies(pageNumber);
     },
-    goToNextPage() {
-      this.$emit("go-to-page", this.currentPage + 1);
+    async goToNextPage() {
+      this.currentPage++;
+      await this.fetchMovies(this.currentPage);
+    },
+    async fetchMovies(pageNumber) {
+      let fetchFunction;
+      switch (this.context) {
+        case "/trending":
+          fetchFunction = fetchTrendingMovies;
+          break;
+        case "/top-rated":
+          fetchFunction = fetchTopRatedMovies;
+          break;
+        case "/new-releases":
+          fetchFunction = fetchNewReleases;
+          break;
+        case "/upcoming":
+          fetchFunction = fetchUpcomingMovies;
+          break;
+        case "/":
+          fetchFunction = searchMovies;
+          break;
+        default:
+          console.error("Invalid context:", this.context);
+          return;
+      }
+
+      try {
+        console.log(fetchFunction);
+        const movies = await fetchFunction(pageNumber);
+        this.$emit("movies-fetched", movies);
+      } catch (error) {
+        console.error("Error fetching movies:", error);
+        // Handle error, if needed
+      }
     },
   },
 };

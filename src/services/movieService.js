@@ -28,6 +28,7 @@ async function fetchTrendingMovies(page = 1) {
 }
 
 async function fetchTopRatedMovies(page = 1) {
+  console.log("FETCHING TREDNING, INSIDE API");
   const url = `${BASE_URL}/movie/top_rated?page=${page}`;
   const options = {
     method: "GET",

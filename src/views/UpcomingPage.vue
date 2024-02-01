@@ -1,7 +1,10 @@
 <template>
   <div class="upcoming-page">
     <h2>Upcoming Movies</h2>
-    <MovieGrid :movies="upcomingMovies" />
+    <MovieGrid
+      :movies="upcomingMovies"
+      @update:movies="upcomingMovies = $event"
+    />
   </div>
 </template>
 

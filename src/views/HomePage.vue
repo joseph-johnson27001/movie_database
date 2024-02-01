@@ -4,7 +4,10 @@
       <SearchBar @search="fetchSearchResults" />
     </div>
     <div v-show="showGrid">
-      <MovieGrid :movies="searchResults" />
+      <MovieGrid
+        :movies="searchResults"
+        @update:movies="searchResults = $event"
+      />
     </div>
   </div>
 </template>
@@ -32,7 +35,6 @@ export default {
         this.showGrid = true;
         const searchResults = await searchMovies(query);
         this.searchResults = searchResults;
-        console.log(this.searchResults);
       } catch (error) {
         console.error("Error fetching search results:", error);
       }

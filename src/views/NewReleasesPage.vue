@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>New Releases</h2>
-    <MovieGrid :movies="newReleases" />
+    <MovieGrid :movies="newReleases" @update:movies="newReleases = $event" />
   </div>
 </template>
 

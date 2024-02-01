@@ -50,11 +50,10 @@
     </div>
     <div>
       <pagination-buttons
-        v-if="!this.loading"
-        :current-page="currentPage"
         :total-pages="totalPages"
-        @go-to-page="fetchMovies"
-      ></pagination-buttons>
+        :visible-page-count="visiblePageCount"
+        @movies-fetched="handleMoviesFetched"
+      />
     </div>
   </div>
 </template>
@@ -82,6 +81,10 @@ export default {
     };
   },
   methods: {
+    handleMoviesFetched(movies) {
+      console.log("HANDLING", movies);
+      this.$emit("update:movies", movies);
+    },
     imageLoaded() {
       this.loadedImages++;
       if (this.loadedImages == this.movieLength && this.loadedImages !== 0) {
