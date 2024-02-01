@@ -48,12 +48,24 @@
         </div>
       </router-link>
     </div>
+    <div>
+      <pagination-buttons
+        :current-page="currentPage"
+        :total-pages="totalPages"
+        @go-to-page="fetchMovies"
+      ></pagination-buttons>
+    </div>
   </div>
 </template>
 
 <script>
+import PaginationButtons from "@/components/PaginationButtons.vue";
+
 export default {
   name: "MovieGrid",
+  components: {
+    PaginationButtons,
+  },
   props: {
     movies: {
       type: Array,
