@@ -21,10 +21,12 @@
 
     <!-- Movie details -->
     <div class="movie-details">
-      <p>
+      <p v-if="movie.release_date">
         <strong>Release Date:</strong> {{ getReleaseYear(movie.release_date) }}
       </p>
-      <p><strong>Overview:</strong> {{ movie.overview }}</p>
+      <p v-if="movie.overview">
+        <strong>Overview:</strong> {{ movie.overview }}
+      </p>
       <p v-if="movie.genres && movie.genres.length">
         <strong>Genres:</strong> {{ getGenres(movie.genres) }}
       </p>
