@@ -2,11 +2,17 @@
   <div class="movie-page">
     <h2 class="movie-title">{{ movie.title }}</h2>
     <div
+      v-if="movie.backdrop_path"
       class="jumbo-area"
       :style="{
         backgroundImage:
           'url(https://image.tmdb.org/t/p/original' + movie.backdrop_path + ')',
       }"
+    ></div>
+    <div
+      v-else
+      class="jumbo-area"
+      :style="{ backgroundImage: 'url(/movie_camera_poster.JPG)' }"
     ></div>
 
     <!-- Movie details -->
@@ -24,9 +30,9 @@
       <p v-if="movie.vote_average">
         <strong>Rating:</strong> {{ movie.vote_average }}/10
       </p>
-      <p><strong>Tagline:</strong> {{ movie.tagline }}</p>
-      <p><strong>Status:</strong> {{ movie.status }}</p>
-      <p>
+      <p v-if="movie.tagline"><strong>Tagline:</strong> {{ movie.tagline }}</p>
+      <p v-if="movie.status"><strong>Status:</strong> {{ movie.status }}</p>
+      <p v-if="movie.production_companies">
         <strong>Production Companies:</strong>
         {{ getProductionCompanies(movie.production_companies) }}
       </p>
