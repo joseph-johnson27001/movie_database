@@ -50,6 +50,7 @@
     </div>
     <div>
       <pagination-buttons
+        v-if="!this.loading"
         :current-page="currentPage"
         :total-pages="totalPages"
         @go-to-page="fetchMovies"
