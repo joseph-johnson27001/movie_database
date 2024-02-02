@@ -26,29 +26,54 @@
     />
 
     <!-- Movie details -->
-    <div class="movie-details">
-      <div v-if="movie.overview">
-        <strong>Overview:</strong>
+    <div class="details-container">
+      <div v-if="movie.overview" class="movie-overview">
+        <h3>Overview</h3>
         <p>{{ movie.overview }}</p>
       </div>
-      <div v-if="movie.genres && movie.genres.length">
-        <strong>Genres:</strong>
-        <p>{{ getGenres(movie.genres) }}</p>
+      <div class="movie-details-container">
+        <div>
+          <h3>Movie Details</h3>
+          <div v-if="movie.vote_average" class="rating-container">
+            <strong>Rating:</strong>
+            <div
+              class="rating-indicator"
+              :style="getRatingStyle(movie.vote_average)"
+            >
+              <span class="percentage"
+                >{{ Math.round(movie.vote_average * 10) }}%</span
+              >
+            </div>
+          </div>
+          <div v-if="movie.genres && movie.genres.length">
+            <strong>Genres:</strong>
+            <p>{{ getGenres(movie.genres) }}</p>
+          </div>
+          <div v-if="movie.runtime">
+            <strong>Runtime:</strong>
+            <p>{{ movie.runtime }} minutes</p>
+          </div>
+          <div v-if="movie.status">
+            <strong>Status:</strong>
+            <p>{{ movie.status }}</p>
+          </div>
+        </div>
+        <div>
+          <!-- FINACNES -->
+          <h3>Financial Information</h3>
+          <div v-if="movie.budget">
+            <strong>Budget:</strong>
+            <p>${{ numberWithCommas(movie.budget) }}</p>
+          </div>
+          <div v-if="movie.revenue">
+            <strong>Revenue:</strong>
+            <p>${{ numberWithCommas(movie.revenue) }}</p>
+          </div>
+        </div>
       </div>
-      <div v-if="movie.runtime">
-        <strong>Runtime:</strong>
-        <p>{{ movie.runtime }} minutes</p>
-      </div>
-      <div v-if="movie.vote_average">
-        <strong>Rating:</strong>
-        <p>{{ movie.vote_average }}/10</p>
-      </div>
-      <div v-if="movie.status">
-        <strong>Status:</strong>
-        <p>{{ movie.status }}</p>
-      </div>
+
       <div v-if="movie.production_companies">
-        <strong>Production Companies:</strong>
+        <h3>Production Companies:</h3>
         <div class="production-companies">
           <div
             v-for="company in movie.production_companies"
@@ -63,14 +88,6 @@
             <p v-else>{{ company.name }}</p>
           </div>
         </div>
-      </div>
-      <div v-if="movie.budget">
-        <strong>Budget:</strong>
-        <p>${{ numberWithCommas(movie.budget) }}</p>
-      </div>
-      <div v-if="movie.revenue">
-        <strong>Revenue:</strong>
-        <p>${{ numberWithCommas(movie.revenue) }}</p>
       </div>
     </div>
 
@@ -110,6 +127,19 @@ export default {
     }
   },
   methods: {
+    getRatingStyle(voteAverage) {
+      let color;
+      if (voteAverage >= 7.5) {
+        color = "#4caf50";
+      } else if (voteAverage >= 5) {
+        color = "#ffc107";
+      } else {
+        color = "#f44336";
+      }
+      return {
+        "--rating-color": color,
+      };
+    },
     getReleaseYear(releaseDate) {
       return new Date(releaseDate).getFullYear();
     },
@@ -144,6 +174,10 @@ export default {
   color: #0d253f;
 }
 
+.movie-overview p {
+  text-align: start;
+}
+
 .jumbo-area {
   max-width: 100%;
   height: auto;
@@ -151,7 +185,7 @@ export default {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-strong {
+h3 {
   color: #0d253f;
 }
 
@@ -165,9 +199,37 @@ strong {
   margin-bottom: 10px;
 }
 
+.movie-details-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 .movie-link {
   margin-top: 20px;
   text-align: center;
+}
+
+.rating-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.rating-indicator {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--rating-color);
+  margin-bottom: 10px;
+}
+
+.percentage {
+  color: white;
+  font-size: 0.8em;
 }
 
 .visit-page {
@@ -252,6 +314,10 @@ strong {
 
   .visit-page {
     font-size: 16px;
+  }
+
+  .movie-details-container {
+    grid-template-columns: 1fr;
   }
 }
 </style>
