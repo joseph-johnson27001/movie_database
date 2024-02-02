@@ -109,15 +109,28 @@
       </div>
     </div>
 
-    <!-- Link to movie page -->
-    <div class="movie-link" v-if="movie.homepage">
-      <a
-        :href="movie.homepage"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="visit-page"
-        >Visit Movie Page</a
-      >
+    <div class="links-section">
+      <!-- Visit IMDB page -->
+      <div class="movie-link" v-if="movie.imdb_id">
+        <a
+          :href="'https://www.imdb.com/title/' + movie.imdb_id"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="visit-page"
+          >Visit IMDB Page</a
+        >
+      </div>
+
+      <!-- Link to movie page -->
+      <div v-if="movie.homepage">
+        <a
+          :href="movie.homepage"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="visit-page"
+          >Visit Movie Page</a
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -215,16 +228,15 @@ h3 {
 .details-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
+  gap: 20px;
   width: 100%;
-  margin-top: 20px;
+  margin: 20px 0px;
 }
 
 .details-card {
   border: 1px solid #ccc;
   border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 20px 0px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   transition: box-shadow 0.3s ease;
@@ -301,6 +313,7 @@ h3 {
   color: #2196f3;
   text-decoration: none;
   font-size: 18px;
+  margin-top: 20px;
 }
 
 .loading-animation-container {
@@ -318,6 +331,10 @@ h3 {
   border: 4px solid #ccc;
   border-top-color: #2196f3;
   animation: spin 1s infinite linear;
+}
+
+.links-section {
+  margin-top: 20px;
 }
 
 @keyframes spin {
