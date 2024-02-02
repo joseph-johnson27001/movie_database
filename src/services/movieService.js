@@ -5,7 +5,7 @@ const API_KEY =
 const BASE_URL = "https://api.themoviedb.org/3";
 
 async function fetchTrendingMovies(page = 1) {
-  const url = `${BASE_URL}/trending/movie/week?page=${page}`;
+  const url = `${BASE_URL}/trending/movie/week?include_adult=false&page=${page}`;
   const options = {
     method: "GET",
     headers: {
@@ -28,7 +28,7 @@ async function fetchTrendingMovies(page = 1) {
 }
 
 async function fetchTopRatedMovies(page = 1) {
-  const url = `${BASE_URL}/movie/top_rated?page=${page}`;
+  const url = `${BASE_URL}/movie/top_rated?include_adult=false&page=${page}`;
   const options = {
     method: "GET",
     headers: {
@@ -50,7 +50,7 @@ async function fetchTopRatedMovies(page = 1) {
   }
 }
 async function fetchNewReleases(page = 1) {
-  const url = `${BASE_URL}/movie/now_playing?page=${page}`;
+  const url = `${BASE_URL}/movie/now_playing?include_adult=false&page=${page}`;
   const options = {
     method: "GET",
     headers: {
@@ -122,7 +122,9 @@ async function fetchMovieDetails(movieId) {
 }
 
 async function fetchUpcomingMovies(page = 1) {
-  const url = `${BASE_URL}/movie/upcoming?page=${page}`;
+  const currentYear = new Date().getFullYear();
+  const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&page=${page}&sort_by=popularity.desc&with_release_type=1&release_date.gte=${currentYear}`;
+
   const options = {
     method: "GET",
     headers: {

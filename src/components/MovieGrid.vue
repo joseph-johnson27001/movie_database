@@ -82,7 +82,6 @@ export default {
   },
   methods: {
     handleMoviesFetched(movies) {
-      console.log("HANDLING", movies);
       this.$emit("update:movies", movies);
     },
     imageLoaded() {
