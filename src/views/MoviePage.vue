@@ -26,6 +26,10 @@
     />
 
     <!-- Movie details -->
+    <div v-if="movie.overview" class="movie-overview details-card">
+      <h3>Overview</h3>
+      <p>{{ movie.overview }}</p>
+    </div>
     <div class="details-container">
       <div class="details-card">
         <strong class="card-header">Rating</strong>
@@ -83,7 +87,10 @@
     </div>
 
     <!-- Production Companies -->
-    <div class="companies-container" v-if="movie.production_companies">
+    <div
+      class="details-card companies-container"
+      v-if="movie.production_companies"
+    >
       <strong class="">Production Companies</strong>
       <div class="production-companies">
         <div
@@ -185,6 +192,11 @@ export default {
   color: #0d253f;
 }
 
+.movie-overview {
+  margin-top: 10px;
+  margin-bottom: 0px !important;
+}
+
 .movie-overview p {
   text-align: justify;
 }
@@ -211,9 +223,12 @@ h3 {
 
 .details-card {
   border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 15px;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: box-shadow 0.3s ease;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -230,14 +245,14 @@ h3 {
 
 .rating-indicator,
 .status-indicator {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 10px 0px;
-  padding: 5px;
+  padding: 15px;
   color: white;
 }
 
@@ -260,14 +275,15 @@ h3 {
 
 .companies-container {
   width: 100%;
+  padding: 20px 0px;
 }
 
 .production-companies {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  gap: 10px;
-  margin-top: 10px;
+  margin: 20px 0px;
+  width: 100%;
 }
 
 .company {
