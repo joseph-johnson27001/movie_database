@@ -83,9 +83,9 @@
     </div>
 
     <!-- Production Companies -->
-    <div class="details-card" v-if="movie.production_companies">
-      <strong class="card-header">Production Companies</strong>
-      <div class="card-content production-companies">
+    <div class="companies-container" v-if="movie.production_companies">
+      <strong class="">Production Companies</strong>
+      <div class="production-companies">
         <div
           v-for="company in movie.production_companies"
           :key="company.name"
@@ -251,15 +251,16 @@ h3 {
   font-size: 0.8em;
 }
 
-.production-companies {
-  margin-top: 20px;
+.companies-container {
+  width: 100%;
 }
 
-.companies-list {
+.production-companies {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 10px;
+  margin-top: 10px;
 }
 
 .company {
