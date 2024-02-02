@@ -59,18 +59,6 @@
         </div>
       </div>
 
-      <div class="details-card">
-        <strong class="card-header">Status</strong>
-        <div v-if="movie.status" class="status-container card-content">
-          <div
-            class="status-indicator"
-            :class="{ released: movie.status.toLowerCase() === 'released' }"
-          >
-            {{ movie.status }}
-          </div>
-        </div>
-      </div>
-
       <div class="details-card" v-if="movie.budget">
         <strong class="card-header">Budget</strong>
         <div class="card-content">
@@ -82,6 +70,18 @@
         <strong class="card-header">Revenue</strong>
         <div class="card-content">
           <p>${{ numberWithCommas(movie.revenue) }}</p>
+        </div>
+      </div>
+
+      <div class="details-card">
+        <strong class="card-header">Status</strong>
+        <div v-if="movie.status" class="status-container card-content">
+          <div
+            class="status-indicator"
+            :class="{ released: movie.status.toLowerCase() === 'released' }"
+          >
+            {{ movie.status }}
+          </div>
         </div>
       </div>
     </div>
