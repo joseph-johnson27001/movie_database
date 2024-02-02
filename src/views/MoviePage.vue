@@ -33,9 +33,8 @@
       </div>
       <div class="movie-details-container">
         <div>
-          <h3>Movie Details</h3>
+          <strong>Rating:</strong>
           <div v-if="movie.vote_average" class="rating-container">
-            <strong>Rating:</strong>
             <div
               class="rating-indicator"
               :style="getRatingStyle(movie.vote_average)"
@@ -53,14 +52,18 @@
             <strong>Runtime:</strong>
             <p>{{ movie.runtime }} minutes</p>
           </div>
-          <div v-if="movie.status">
-            <strong>Status:</strong>
-            <p>{{ movie.status }}</p>
-          </div>
         </div>
         <div>
-          <!-- FINACNES -->
-          <h3>Financial Information</h3>
+          <!-- Second container -->
+          <strong>Status:</strong>
+          <div v-if="movie.status" class="status-container">
+            <div
+              class="status-indicator"
+              :class="{ released: movie.status.toLowerCase() === 'released' }"
+            >
+              {{ movie.status }}
+            </div>
+          </div>
           <div v-if="movie.budget">
             <strong>Budget:</strong>
             <p>${{ numberWithCommas(movie.budget) }}</p>
@@ -187,6 +190,7 @@ export default {
 
 h3 {
   color: #0d253f;
+  text-align: center;
 }
 
 .movie-details {
@@ -202,6 +206,7 @@ h3 {
 .movie-details-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  text-align: center;
 }
 
 .details-container {
@@ -213,20 +218,41 @@ h3 {
   text-align: center;
 }
 
-.rating-indicator {
+.rating-indicator,
+.status-indicator {
   width: 70px;
   height: 70px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--rating-color);
   margin: 10px 0px;
+  padding: 2px;
+  color: white;
+}
+
+.rating-indicator {
+  background-color: var(--rating-color);
+}
+
+.status-indicator.released {
+  background-color: #4caf50;
+}
+
+.status-indicator:not(.released) {
+  background-color: #f44336;
 }
 
 .percentage {
   color: white;
   font-size: 0.8em;
+}
+.rating-container,
+.status-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .visit-page {
@@ -281,7 +307,7 @@ h3 {
 .production-companies {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-bottom: 10px;
 }
 
