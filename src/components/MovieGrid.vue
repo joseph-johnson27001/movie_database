@@ -123,6 +123,10 @@ export default {
   gap: 20px;
 }
 
+.movie-grid p {
+  text-align: center;
+}
+
 .movie-item {
   position: relative;
   border: 1px solid #ccc;

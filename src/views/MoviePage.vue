@@ -33,7 +33,7 @@
       </div>
       <div class="movie-details-container">
         <div>
-          <strong>Rating:</strong>
+          <strong class="rating-heading">Rating</strong>
           <div v-if="movie.vote_average" class="rating-container">
             <div
               class="rating-indicator"
@@ -45,17 +45,17 @@
             </div>
           </div>
           <div v-if="movie.genres && movie.genres.length">
-            <strong>Genres:</strong>
+            <strong>Genres</strong>
             <p>{{ getGenres(movie.genres) }}</p>
           </div>
           <div v-if="movie.runtime">
-            <strong>Runtime:</strong>
+            <strong>Runtime</strong>
             <p>{{ movie.runtime }} minutes</p>
           </div>
         </div>
         <div>
           <!-- Second container -->
-          <strong>Status:</strong>
+          <strong class="status-heading">Status</strong>
           <div v-if="movie.status" class="status-container">
             <div
               class="status-indicator"
@@ -65,18 +65,18 @@
             </div>
           </div>
           <div v-if="movie.budget">
-            <strong>Budget:</strong>
+            <strong>Budget</strong>
             <p>${{ numberWithCommas(movie.budget) }}</p>
           </div>
           <div v-if="movie.revenue">
-            <strong>Revenue:</strong>
+            <strong>Revenue</strong>
             <p>${{ numberWithCommas(movie.revenue) }}</p>
           </div>
         </div>
       </div>
 
       <div v-if="movie.production_companies">
-        <h3>Production Companies:</h3>
+        <h3>Production Companies</h3>
         <div class="production-companies">
           <div
             v-for="company in movie.production_companies"
@@ -178,7 +178,7 @@ export default {
 }
 
 .movie-overview p {
-  text-align: start;
+  text-align: justify;
 }
 
 .jumbo-area {
@@ -206,7 +206,7 @@ h3 {
 .movie-details-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .details-container {
@@ -227,7 +227,7 @@ h3 {
   align-items: center;
   justify-content: center;
   margin: 10px 0px;
-  padding: 2px;
+  padding: 5px;
   color: white;
 }
 
@@ -249,10 +249,10 @@ h3 {
 }
 .rating-container,
 .status-container {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: column; */
+  /* align-items: center; */
 }
 
 .visit-page {
@@ -287,6 +287,7 @@ h3 {
   margin-bottom: 20px;
   font-style: italic;
   color: #888;
+  margin-top: 0px;
 }
 
 .movie-details {
@@ -346,6 +347,7 @@ h3 {
 
   .movie-details-container {
     grid-template-columns: 1fr;
+    text-align: start;
   }
 }
 </style>
