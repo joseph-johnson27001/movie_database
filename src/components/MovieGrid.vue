@@ -114,6 +114,9 @@ export default {
   watch: {
     movies: {
       handler() {
+        if (this.movies.length == 0) {
+          this.loading = false;
+        }
         this.movieLength = this.movies.length;
       },
     },
