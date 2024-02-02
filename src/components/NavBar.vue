@@ -73,6 +73,7 @@ nav {
   background-color: #0d253f;
   color: white;
   padding: 10px 0;
+  text-align: center;
 }
 
 .navigation-container {

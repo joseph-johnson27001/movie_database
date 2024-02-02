@@ -204,27 +204,24 @@ h3 {
   grid-template-columns: 1fr 1fr;
 }
 
+.details-container {
+  width: 100%;
+}
+
 .movie-link {
   margin-top: 20px;
   text-align: center;
 }
 
-.rating-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .rating-indicator {
-  width: 30px;
-  height: 30px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--rating-color);
-  margin-bottom: 10px;
+  margin: 10px 0px;
 }
 
 .percentage {
@@ -268,7 +265,6 @@ h3 {
 
 .movie-details {
   margin-top: 20px;
-  text-align: left;
 }
 
 .movie-details strong {
