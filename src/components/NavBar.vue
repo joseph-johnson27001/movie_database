@@ -7,6 +7,7 @@
             <router-link
               to="/new-releases"
               :class="{ active: isActive('New Releases') }"
+              @click="clearSearchHistory"
               >New Releases</router-link
             >
           </li>
@@ -14,6 +15,7 @@
             <router-link
               to="/top-rated"
               :class="{ active: isActive('Top Rated') }"
+              @click="clearSearchHistory"
               >Top Rated</router-link
             >
           </li>
@@ -21,6 +23,7 @@
             <router-link
               to="/trending"
               :class="{ active: isActive('Trending') }"
+              @click="clearSearchHistory"
               >Trending</router-link
             >
           </li>
@@ -28,6 +31,7 @@
             <router-link
               to="/upcoming"
               :class="{ active: isActive('Upcoming') }"
+              @click="clearSearchHistory"
               >Upcoming</router-link
             >
           </li>
@@ -53,9 +57,13 @@
 <script>
 export default {
   name: "NavBar",
+  inject: ["state"],
   methods: {
     isActive(item) {
       return this.$route.name === item;
+    },
+    clearSearchHistory() {
+      this.state.searchQuery = "";
     },
   },
 };
