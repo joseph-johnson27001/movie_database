@@ -3,7 +3,13 @@
     <div class="loading-animation"></div>
   </div>
   <div v-show="!loading" class="movie-page">
-    <h2 class="movie-title">{{ movie.title }}</h2>
+    <h2 class="movie-title">
+      {{ movie.title }}
+      <span v-if="movie.release_date"
+        >({{ getReleaseYear(movie.release_date) }})</span
+      >
+    </h2>
+    <p v-if="movie.tagline" class="tagline">{{ movie.tagline }}</p>
     <img
       v-if="movie.backdrop_path"
       :src="'https://image.tmdb.org/t/p/original' + movie.backdrop_path"
@@ -21,29 +27,51 @@
 
     <!-- Movie details -->
     <div class="movie-details">
-      <p v-if="movie.release_date">
-        <strong>Release Date:</strong> {{ getReleaseYear(movie.release_date) }}
-      </p>
-      <p v-if="movie.overview">
-        <strong>Overview:</strong> {{ movie.overview }}
-      </p>
-      <p v-if="movie.genres && movie.genres.length">
-        <strong>Genres:</strong> {{ getGenres(movie.genres) }}
-      </p>
-      <p v-if="movie.runtime">
-        <strong>Runtime:</strong> {{ movie.runtime }} minutes
-      </p>
-      <p v-if="movie.vote_average">
-        <strong>Rating:</strong> {{ movie.vote_average }}/10
-      </p>
-      <p v-if="movie.tagline"><strong>Tagline:</strong> {{ movie.tagline }}</p>
-      <p v-if="movie.status"><strong>Status:</strong> {{ movie.status }}</p>
-      <p v-if="movie.production_companies">
+      <div v-if="movie.overview">
+        <strong>Overview:</strong>
+        <p>{{ movie.overview }}</p>
+      </div>
+      <div v-if="movie.genres && movie.genres.length">
+        <strong>Genres:</strong>
+        <p>{{ getGenres(movie.genres) }}</p>
+      </div>
+      <div v-if="movie.runtime">
+        <strong>Runtime:</strong>
+        <p>{{ movie.runtime }} minutes</p>
+      </div>
+      <div v-if="movie.vote_average">
+        <strong>Rating:</strong>
+        <p>{{ movie.vote_average }}/10</p>
+      </div>
+      <div v-if="movie.status">
+        <strong>Status:</strong>
+        <p>{{ movie.status }}</p>
+      </div>
+      <div v-if="movie.production_companies">
         <strong>Production Companies:</strong>
-        {{ getProductionCompanies(movie.production_companies) }}
-      </p>
-      <p v-if="movie.budget"><strong>Budget:</strong> ${{ movie.budget }}</p>
-      <p v-if="movie.revenue"><strong>Revenue:</strong> ${{ movie.revenue }}</p>
+        <div class="production-companies">
+          <div
+            v-for="company in movie.production_companies"
+            :key="company.name"
+          >
+            <img
+              v-if="company.logo_path"
+              :src="'https://image.tmdb.org/t/p/original' + company.logo_path"
+              :alt="company.name"
+              class="production-company-logo"
+            />
+            <p v-else>{{ company.name }}</p>
+          </div>
+        </div>
+      </div>
+      <div v-if="movie.budget">
+        <strong>Budget:</strong>
+        <p>${{ numberWithCommas(movie.budget) }}</p>
+      </div>
+      <div v-if="movie.revenue">
+        <strong>Revenue:</strong>
+        <p>${{ numberWithCommas(movie.revenue) }}</p>
+      </div>
     </div>
 
     <!-- Link to movie page -->
@@ -88,16 +116,14 @@ export default {
     getGenres(genres) {
       return genres.map((genre) => genre.name).join(", ");
     },
-    getProductionCompanies(companies) {
-      if (companies) {
-        return companies.map((company) => company.name).join(", ");
-      }
-    },
     imageLoaded() {
       this.loadedImage = true;
       if (this.movie) {
         this.loading = false;
       }
+    },
+    numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
   },
 };
@@ -107,32 +133,51 @@ export default {
 .movie-page {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.movie-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #0d253f;
 }
 
 .jumbo-area {
-  background-color: #333333;
-  color: white;
-  padding: 20px;
-  border-radius: 5px;
-  background-size: cover;
-  background-position: center;
-  min-height: 500px;
+  max-width: 100%;
   height: auto;
-  max-width: 1160px;
-  max-height: 650px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+strong {
+  color: #0d253f;
 }
 
 .movie-details {
   margin-top: 20px;
+  font-size: 16px;
+  text-align: left;
+}
+
+.movie-details p {
+  margin-bottom: 10px;
 }
 
 .movie-link {
   margin-top: 20px;
+  text-align: center;
 }
 
+.visit-page {
+  cursor: pointer;
+  color: #2196f3;
+  text-decoration: none;
+  font-size: 18px;
+}
 .loading-animation-container {
   width: 100%;
-  height: 100%;
   min-height: 70vh;
   display: flex;
   justify-content: center;
@@ -148,20 +193,65 @@ export default {
   animation: spin 1s infinite linear;
 }
 
-a:-webkit-any-link {
-  color: inherit;
-  cursor: inherit;
-  text-decoration: inherit;
-}
-
-.visit-page {
-  cursor: pointer !important;
-  color: #2196f3 !important;
-}
-
 @keyframes spin {
   100% {
     transform: rotate(360deg);
+  }
+}
+.tagline {
+  margin-bottom: 20px;
+  font-style: italic;
+  color: #888;
+}
+
+.movie-details {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.movie-details strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #0d253f;
+}
+
+.movie-details p {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.production-companies {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.production-company-logo {
+  width: 100px;
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .movie-page {
+    padding: 10px;
+  }
+
+  .movie-title {
+    font-size: 24px;
+  }
+
+  .jumbo-area {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .movie-details {
+    font-size: 14px;
+  }
+
+  .visit-page {
+    font-size: 16px;
   }
 }
 </style>
