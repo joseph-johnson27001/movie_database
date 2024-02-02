@@ -1,6 +1,6 @@
 <template>
   <div v-show="loading" class="loading-animation-container">
-    <div class="loading-animation"></div>
+    <loading-animation />
   </div>
   <div v-show="!loading" class="movie-page">
     <h2 class="movie-title">
@@ -141,9 +141,13 @@
 
 <script>
 import { fetchMovieDetails } from "../services/movieService";
+import LoadingAnimation from "@/components/LoadingAnimation.vue";
 
 export default {
   name: "MoviePage",
+  components: {
+    LoadingAnimation,
+  },
   data() {
     return {
       movie: false,
@@ -326,15 +330,6 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.loading-animation {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 4px solid #ccc;
-  border-top-color: #2196f3;
-  animation: spin 1s infinite linear;
 }
 
 .links-section {

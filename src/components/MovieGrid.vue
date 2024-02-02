@@ -1,8 +1,9 @@
 <template>
   <div>
     <div v-show="loading" class="loading-animation-container">
-      <div class="loading-animation"></div>
+      <loading-animation />
     </div>
+
     <div v-show="!loading" class="movie-grid">
       <router-link
         v-for="(movie, index) in movies"
@@ -59,11 +60,13 @@
 
 <script>
 import PaginationButtons from "@/components/PaginationButtons.vue";
+import LoadingAnimation from "@/components/LoadingAnimation.vue";
 
 export default {
   name: "MovieGrid",
   components: {
     PaginationButtons,
+    LoadingAnimation,
   },
   props: {
     movies: {
