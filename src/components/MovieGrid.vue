@@ -1,9 +1,11 @@
 <template>
   <div>
+    <div v-if="!loading && this.movies.length == 0">
+      There are no movies matching your search.
+    </div>
     <div v-show="loading" class="loading-animation-container">
       <loading-animation />
     </div>
-
     <div v-show="!loading" class="movie-grid">
       <router-link
         v-for="(movie, index) in movies"
@@ -51,7 +53,7 @@
     </div>
     <div>
       <pagination-buttons
-        v-if="!this.loading"
+        v-if="!this.loading && this.movies.length !== 0"
         @movies-fetched="handleMoviesFetched"
       />
     </div>
