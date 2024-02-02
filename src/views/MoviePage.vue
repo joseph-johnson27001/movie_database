@@ -27,69 +27,77 @@
 
     <!-- Movie details -->
     <div class="details-container">
-      <div v-if="movie.overview" class="movie-overview">
-        <h3>Overview</h3>
-        <p>{{ movie.overview }}</p>
-      </div>
-      <div class="movie-details-container">
-        <div>
-          <strong class="rating-heading">Rating</strong>
-          <div v-if="movie.vote_average" class="rating-container">
-            <div
-              class="rating-indicator"
-              :style="getRatingStyle(movie.vote_average)"
-            >
-              <span class="percentage"
-                >{{ Math.round(movie.vote_average * 10) }}%</span
-              >
-            </div>
-          </div>
-          <div v-if="movie.genres && movie.genres.length">
-            <strong>Genres</strong>
-            <p>{{ getGenres(movie.genres) }}</p>
-          </div>
-          <div v-if="movie.runtime">
-            <strong>Runtime</strong>
-            <p>{{ movie.runtime }} minutes</p>
-          </div>
-        </div>
-        <div>
-          <!-- Second container -->
-          <strong class="status-heading">Status</strong>
-          <div v-if="movie.status" class="status-container">
-            <div
-              class="status-indicator"
-              :class="{ released: movie.status.toLowerCase() === 'released' }"
-            >
-              {{ movie.status }}
-            </div>
-          </div>
-          <div v-if="movie.budget">
-            <strong>Budget</strong>
-            <p>${{ numberWithCommas(movie.budget) }}</p>
-          </div>
-          <div v-if="movie.revenue">
-            <strong>Revenue</strong>
-            <p>${{ numberWithCommas(movie.revenue) }}</p>
+      <div class="details-card">
+        <strong class="card-header">Rating</strong>
+        <div v-if="movie.vote_average" class="rating-container card-content">
+          <div
+            class="rating-indicator"
+            :style="getRatingStyle(movie.vote_average)"
+          >
+            <span class="percentage">
+              {{ Math.round(movie.vote_average * 10) }}%
+            </span>
           </div>
         </div>
       </div>
 
-      <div v-if="movie.production_companies">
-        <h3>Production Companies</h3>
-        <div class="production-companies">
+      <div class="details-card">
+        <strong class="card-header">Genres</strong>
+        <div v-if="movie.genres && movie.genres.length" class="card-content">
+          <p>{{ getGenres(movie.genres) }}</p>
+        </div>
+      </div>
+
+      <div class="details-card">
+        <strong class="card-header">Runtime</strong>
+        <div v-if="movie.runtime" class="card-content">
+          <p>{{ movie.runtime }} minutes</p>
+        </div>
+      </div>
+
+      <div class="details-card">
+        <strong class="card-header">Status</strong>
+        <div v-if="movie.status" class="status-container card-content">
           <div
-            v-for="company in movie.production_companies"
-            :key="company.name"
+            class="status-indicator"
+            :class="{ released: movie.status.toLowerCase() === 'released' }"
           >
-            <img
-              v-if="company.logo_path"
-              :src="'https://image.tmdb.org/t/p/original' + company.logo_path"
-              :alt="company.name"
-              class="production-company-logo"
-            />
-            <p v-else>{{ company.name }}</p>
+            {{ movie.status }}
           </div>
+        </div>
+      </div>
+
+      <div class="details-card" v-if="movie.budget">
+        <strong class="card-header">Budget</strong>
+        <div class="card-content">
+          <p>${{ numberWithCommas(movie.budget) }}</p>
+        </div>
+      </div>
+
+      <div class="details-card" v-if="movie.revenue">
+        <strong class="card-header">Revenue</strong>
+        <div class="card-content">
+          <p>${{ numberWithCommas(movie.revenue) }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Production Companies -->
+    <div class="details-card" v-if="movie.production_companies">
+      <strong class="card-header">Production Companies</strong>
+      <div class="card-content production-companies">
+        <div
+          v-for="company in movie.production_companies"
+          :key="company.name"
+          class="company"
+        >
+          <img
+            v-if="company.logo_path"
+            :src="'https://image.tmdb.org/t/p/original' + company.logo_path"
+            :alt="company.name"
+            class="production-company-logo"
+          />
+          <p v-else>{{ company.name }}</p>
         </div>
       </div>
     </div>
@@ -193,29 +201,24 @@ h3 {
   text-align: center;
 }
 
-.movie-details {
-  margin-top: 20px;
-  font-size: 16px;
-  text-align: left;
-}
-
-.movie-details p {
-  margin-bottom: 10px;
-}
-
-.movie-details-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  /* text-align: center; */
-}
-
 .details-container {
   width: 100%;
+  margin-top: 20px;
 }
 
-.movie-link {
-  margin-top: 20px;
-  text-align: center;
+.details-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.card-header {
+  font-weight: bold;
+}
+
+.card-content {
+  margin-top: 10px;
 }
 
 .rating-indicator,
@@ -247,12 +250,27 @@ h3 {
   color: white;
   font-size: 0.8em;
 }
-.rating-container,
-.status-container {
-  /* display: flex;
-  justify-content: center;
-  flex-direction: column; */
-  /* align-items: center; */
+
+.production-companies {
+  margin-top: 20px;
+}
+
+.companies-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.company {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.production-company-logo {
+  width: 100px;
+  margin-right: 10px;
 }
 
 .visit-page {
@@ -261,6 +279,7 @@ h3 {
   text-decoration: none;
   font-size: 18px;
 }
+
 .loading-animation-container {
   width: 100%;
   min-height: 70vh;
@@ -283,44 +302,12 @@ h3 {
     transform: rotate(360deg);
   }
 }
+
 .tagline {
   margin-bottom: 20px;
   font-style: italic;
   color: #888;
   margin-top: 0px;
-}
-
-.movie-details {
-  margin-top: 20px;
-}
-
-.movie-details strong {
-  display: block;
-  margin-bottom: 5px;
-  color: #0d253f;
-}
-
-.movie-details p {
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.production-companies {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin-bottom: 10px;
-  flex-wrap: wrap;
-}
-
-.production-companies p {
-  font-size: large;
-  padding: 0px 20px;
-}
-
-.production-company-logo {
-  width: 100px;
-  margin-right: 10px;
 }
 
 @media screen and (max-width: 768px) {
@@ -337,17 +324,8 @@ h3 {
     height: auto;
   }
 
-  .movie-details {
-    font-size: 14px;
-  }
-
   .visit-page {
     font-size: 16px;
-  }
-
-  .movie-details-container {
-    grid-template-columns: 1fr;
-    text-align: start;
   }
 }
 </style>
