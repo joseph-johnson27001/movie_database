@@ -51,8 +51,6 @@
     <div>
       <pagination-buttons
         v-if="!this.loading"
-        :total-pages="totalPages"
-        :visible-page-count="visiblePageCount"
         @movies-fetched="handleMoviesFetched"
       />
     </div>
@@ -79,6 +77,7 @@ export default {
       movieLength: 0,
       loadedImages: 0,
       backupImage: "/movie_camera_poster.JPG",
+      visiblePageCount: 0,
     };
   },
   methods: {

@@ -19,10 +19,6 @@ import {
 
 export default {
   props: {
-    totalPages: {
-      type: Number,
-      required: true,
-    },
     visiblePageCount: {
       type: Number,
       default: 3,
