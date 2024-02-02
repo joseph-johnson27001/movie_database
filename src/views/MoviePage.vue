@@ -327,7 +327,7 @@ h3 {
 
 .loading-animation-container {
   width: 100%;
-  min-height: 70vh;
+
   display: flex;
   justify-content: center;
   align-items: center;

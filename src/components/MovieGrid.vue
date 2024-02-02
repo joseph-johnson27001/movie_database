@@ -179,15 +179,6 @@ export default {
   align-items: center;
 }
 
-.loading-animation {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 4px solid #ccc;
-  border-top-color: #2196f3;
-  animation: spin 1s infinite linear;
-}
-
 a:-webkit-any-link {
   color: inherit !important;
   cursor: inherit !important;

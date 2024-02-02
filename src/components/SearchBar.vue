@@ -6,7 +6,9 @@
       v-model="query"
       @keyup.enter="searchMovies"
     />
-    <button @click="searchMovies">Search</button>
+    <!-- Show clear button (X) if there's text in the input -->
+    <button v-if="query" @click="clearInput" class="cancel-btn">X</button>
+    <button @click="searchMovies" class="search-btn">Search</button>
   </div>
 </template>
 
@@ -26,6 +28,10 @@ export default {
         this.$emit("search", this.query);
       }
     },
+    clearInput() {
+      this.query = "";
+      this.searchMovies();
+    },
   },
 };
 </script>
@@ -34,6 +40,7 @@ export default {
 .search-bar {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 input {
@@ -46,6 +53,7 @@ input {
   font-family: "Quicksand", sans-serif;
   font-weight: 400;
   background-color: #f7f7f7;
+  position: relative;
 }
 
 input:focus {
@@ -53,7 +61,14 @@ input:focus {
   box-shadow: 0 0 5px rgba(52, 152, 219, 0.7);
 }
 
-button {
+.cancel-btn {
+  background-color: #f7f7f7;
+  border: none;
+  position: absolute;
+  right: 110px;
+}
+
+.search-btn {
   padding: 15px 20px;
   background-color: #007bff;
   color: white;
@@ -63,7 +78,7 @@ button {
   transition: background-color 0.2s;
 }
 
-button:hover {
+.search-btn:hover {
   background-color: #0056b3;
 }
 </style>
