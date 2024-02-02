@@ -170,15 +170,6 @@ export default {
   font-size: 0.8em;
 }
 
-.loading-animation-container {
-  width: 100%;
-  height: 100%;
-  min-height: 70vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 a:-webkit-any-link {
   color: inherit !important;
   cursor: inherit !important;

@@ -66,6 +66,7 @@ input:focus {
   border: none;
   position: absolute;
   right: 110px;
+  cursor: pointer;
 }
 
 .search-btn {
