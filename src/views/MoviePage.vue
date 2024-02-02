@@ -31,9 +31,9 @@
     <!-- Movie details -->
 
     <div class="details-container">
-      <div class="details-card">
+      <div class="details-card" v-if="movie.vote_average">
         <strong class="card-header">Rating</strong>
-        <div v-if="movie.vote_average" class="rating-container card-content">
+        <div class="rating-container card-content">
           <div
             class="rating-indicator"
             :style="getRatingStyle(movie.vote_average)"
@@ -77,10 +77,14 @@
         <strong class="card-header">Status</strong>
         <div v-if="movie.status" class="status-container card-content">
           <div
+            v-if="movie.status.toLowerCase() === 'released'"
             class="status-indicator"
             :class="{ released: movie.status.toLowerCase() === 'released' }"
           >
             {{ movie.status }}
+          </div>
+          <div style="text-align: center" v-else class="status-indicator">
+            Not Released
           </div>
         </div>
       </div>
@@ -263,7 +267,7 @@ h3 {
   align-items: center;
   justify-content: center;
   margin: 10px 0px;
-  padding: 15px;
+  padding: 20px;
   color: white;
 }
 
