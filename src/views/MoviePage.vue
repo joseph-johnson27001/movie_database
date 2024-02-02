@@ -10,6 +10,9 @@
       >
     </h2>
     <p v-if="movie.tagline" class="tagline">{{ movie.tagline }}</p>
+    <div v-if="movie.overview" class="movie-overview">
+      <p>{{ movie.overview }}</p>
+    </div>
     <img
       v-if="movie.backdrop_path"
       :src="'https://image.tmdb.org/t/p/original' + movie.backdrop_path"
@@ -26,10 +29,7 @@
     />
 
     <!-- Movie details -->
-    <div v-if="movie.overview" class="movie-overview details-card">
-      <h3>Overview</h3>
-      <p>{{ movie.overview }}</p>
-    </div>
+
     <div class="details-container">
       <div class="details-card">
         <strong class="card-header">Rating</strong>
@@ -194,7 +194,7 @@ export default {
 
 .movie-overview {
   margin-top: 10px;
-  margin-bottom: 0px !important;
+  margin-bottom: 10px !important;
 }
 
 .movie-overview p {
@@ -328,13 +328,20 @@ h3 {
 }
 
 .tagline {
-  margin-bottom: 20px;
   font-style: italic;
   color: #888;
   margin-top: 0px;
 }
 
 @media screen and (max-width: 768px) {
+  .details-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    width: 100%;
+    margin-top: 20px;
+  }
+
   .movie-page {
     padding: 10px;
   }
