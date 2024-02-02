@@ -3,7 +3,6 @@
     <button @click="goToPreviousPage" :disabled="currentPage === 1">
       Previous
     </button>
-
     <button @click="goToNextPage">Next</button>
   </div>
 </template>
@@ -18,6 +17,7 @@ import {
 } from "../services/movieService";
 
 export default {
+  inject: ["state"],
   props: {
     visiblePageCount: {
       type: Number,
@@ -76,8 +76,12 @@ export default {
       }
 
       try {
-        console.log(fetchFunction);
-        const movies = await fetchFunction(pageNumber);
+        let movies;
+        if (this.state.searchQuery !== "") {
+          movies = await fetchFunction(this.state.searchQuery, pageNumber);
+        } else {
+          movies = await fetchFunction(pageNumber);
+        }
         this.$emit("movies-fetched", movies);
       } catch (error) {
         console.error("Error fetching movies:", error);

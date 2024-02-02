@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  inject: ["state"],
   name: "SearchBar",
   data() {
     return {
@@ -20,6 +21,7 @@ export default {
   },
   methods: {
     searchMovies() {
+      this.state.searchQuery = this.query;
       if (this.query.length !== 0) {
         this.$emit("search", this.query);
       }
