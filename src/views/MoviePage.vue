@@ -202,6 +202,9 @@ h3 {
 }
 
 .details-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
   width: 100%;
   margin-top: 20px;
 }
@@ -211,6 +214,10 @@ h3 {
   border-radius: 8px;
   padding: 15px;
   margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .card-header {
