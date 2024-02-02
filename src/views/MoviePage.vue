@@ -309,6 +309,12 @@ h3 {
   align-items: center;
   justify-content: space-around;
   margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.production-companies p {
+  font-size: large;
+  padding: 0px 20px;
 }
 
 .production-company-logo {
