@@ -193,7 +193,6 @@ export default {
 }
 
 .movie-overview {
-  margin-top: 10px;
   margin-bottom: 10px !important;
 }
 

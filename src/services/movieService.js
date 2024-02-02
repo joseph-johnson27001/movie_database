@@ -98,29 +98,6 @@ async function searchMovies(query, page = 1) {
   }
 }
 
-async function fetchMovieDetails(movieId) {
-  const url = `${BASE_URL}/movie/${movieId}`;
-  const options = {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      Authorization: `Bearer ${API_KEY}`,
-    },
-  };
-
-  try {
-    const response = await fetch(url, options);
-    if (!response.ok) {
-      throw new Error("Failed to fetch movie details");
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching movie details:", error);
-    return null;
-  }
-}
-
 async function fetchUpcomingMovies(page = 1) {
   const currentYear = new Date().getFullYear();
   const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&page=${page}&sort_by=popularity.desc&with_release_type=1&release_date.gte=${currentYear}`;
@@ -143,6 +120,30 @@ async function fetchUpcomingMovies(page = 1) {
   } catch (error) {
     console.error("Error fetching upcoming movies:", error);
     return [];
+  }
+}
+
+async function fetchMovieDetails(movieId) {
+  const url = `${BASE_URL}/movie/${movieId}`;
+  const options = {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  };
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error("Failed to fetch movie details");
+    }
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Error fetching movie details:", error);
+    return null;
   }
 }
 
