@@ -45,16 +45,16 @@
         </div>
       </div>
 
-      <div class="details-card">
+      <div v-if="movie.genres && movie.genres.length" class="details-card">
         <strong class="card-header">Genres</strong>
-        <div v-if="movie.genres && movie.genres.length" class="card-content">
+        <div class="card-content">
           <p>{{ getGenres(movie.genres) }}</p>
         </div>
       </div>
 
-      <div class="details-card">
+      <div v-if="movie.runtime" class="details-card">
         <strong class="card-header">Runtime</strong>
-        <div v-if="movie.runtime" class="card-content">
+        <div class="card-content">
           <p>{{ movie.runtime }} minutes</p>
         </div>
       </div>
@@ -267,6 +267,7 @@ h3 {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  border: 1px solid #ccc;
   display: flex;
   align-items: center;
   justify-content: center;
