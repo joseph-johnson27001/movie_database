@@ -37,4 +37,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+h2 {
+  text-align: center !important;
+}
+</style>
