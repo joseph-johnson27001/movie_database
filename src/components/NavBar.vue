@@ -2,7 +2,12 @@
   <nav>
     <div class="navigation-container">
       <div class="main-container">
-        <ul class="nav-btn-container">
+        <button class="hamburger-btn" @click="toggleMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-btn-container main-btn-container">
           <li>
             <router-link
               to="/new-releases"
@@ -65,6 +70,9 @@ export default {
     clearSearchHistory() {
       this.state.searchQuery = "";
     },
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
+    },
   },
 };
 </script>
@@ -118,5 +126,44 @@ a {
 
 .active {
   color: gold;
+}
+
+.hamburger-btn {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .main-btn-container {
+    display: none;
+  }
+
+  .hamburger-btn {
+    display: block;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .hamburger-btn span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px;
+    transition: all 0.3s ease;
+  }
+
+  .hamburger-btn.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger-btn.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-btn.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
 }
 </style>
