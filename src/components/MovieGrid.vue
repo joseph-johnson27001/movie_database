@@ -144,6 +144,7 @@ export default {
   cursor: pointer;
   transition: transform 0.1s ease-in-out, border 0.1s ease-in-out,
     box-shadow 0.1s ease-in-out;
+  height: 300px;
 }
 
 .movie-item:hover {
@@ -155,6 +156,7 @@ export default {
 .movie-image {
   width: 100%;
   border-radius: 8px;
+  height: 100%;
 }
 
 .rating-indicator {
@@ -184,6 +186,12 @@ a:-webkit-any-link {
 @keyframes spin {
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .movie-item {
+    height: 100%;
   }
 }
 </style>
