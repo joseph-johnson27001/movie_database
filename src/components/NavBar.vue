@@ -7,13 +7,6 @@
           <span></span>
           <span></span>
         </button>
-        <div class="additional-btn-container" v-if="this.isMenuOpen">
-          <button @click="navigateTo('new-releases')">New Releases</button>
-          <button @click="navigateTo('top-rated')">Top Rated</button>
-          <button @click="navigateTo('trending')">Trending</button>
-          <button @click="navigateTo('upcoming')">Upcoming</button>
-        </div>
-
         <ul class="nav-btn-container main-btn-container">
           <li>
             <router-link
@@ -62,6 +55,42 @@
           </ul>
         </div>
       </div>
+      <div class="additional-btn-container" v-if="this.isMenuOpen">
+        <ul class="additional-btn-list">
+          <li>
+            <router-link
+              to="/new-releases"
+              :class="{ active: isActive('New Releases') }"
+              @click="clearSearchHistory"
+              >New Releases</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              to="/top-rated"
+              :class="{ active: isActive('Top Rated') }"
+              @click="clearSearchHistory"
+              >Top Rated</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              to="/trending"
+              :class="{ active: isActive('Trending') }"
+              @click="clearSearchHistory"
+              >Trending</router-link
+            >
+          </li>
+          <li>
+            <router-link
+              to="/upcoming"
+              :class="{ active: isActive('Upcoming') }"
+              @click="clearSearchHistory"
+              >Upcoming</router-link
+            >
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </template>
@@ -81,9 +110,13 @@ export default {
     },
     clearSearchHistory() {
       this.state.searchQuery = "";
+      this.closeMenu();
     },
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
+    },
+    closeMenu() {
+      this.isMenuOpen = false;
     },
   },
 };
@@ -103,6 +136,15 @@ nav {
 
 .additional-btn-container {
   display: none;
+}
+
+.additional-btn-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.additional-btn-list li {
+  padding-top: 20px;
 }
 .main-container {
   display: grid;
