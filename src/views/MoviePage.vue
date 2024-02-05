@@ -327,11 +327,12 @@ h3 {
   color: #1976d2;
   text-decoration: none;
   padding: 8px 16px;
+  margin: 0px 10px;
   border: none;
   border-radius: 4px;
   background-color: #1976d2;
   color: #fff;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
 }
 
 .visit-page-button:hover {
