@@ -127,6 +127,7 @@ nav {
   color: white;
   padding: 10px 0;
   text-align: center;
+  border-radius: 5px;
 }
 
 .navigation-container {
@@ -140,6 +141,7 @@ nav {
 
 .additional-btn-list {
   display: flex;
+  border-radius: 0px 5px 5px 0px;
   flex-direction: column;
 }
 
