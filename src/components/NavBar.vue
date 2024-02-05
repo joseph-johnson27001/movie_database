@@ -43,7 +43,7 @@
         </ul>
 
         <div class="nav-btn-container heading">
-          <p>YAY Movies!</p>
+          <p class="site-title">YAY Movies!</p>
         </div>
         <div class="search-container">
           <ul class="nav-btn-container">
@@ -158,13 +158,22 @@ ul {
 
 .nav-btn-container {
   display: flex;
-  margin-left: 10px;
   align-items: center;
 }
 
 .search-container {
   display: flex;
   justify-content: flex-end;
+}
+
+.site-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: gold;
 }
 
 .heading {
@@ -187,6 +196,10 @@ a {
 
 .hamburger-btn {
   display: none;
+}
+
+.main-btn-container {
+  margin-left: 10px;
 }
 
 @media screen and (max-width: 768px) {
