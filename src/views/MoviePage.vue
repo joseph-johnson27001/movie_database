@@ -13,6 +13,7 @@
     <div v-if="movie.overview" class="movie-overview">
       <p>{{ movie.overview }}</p>
     </div>
+
     <img
       v-if="movie.backdrop_path"
       :src="'https://image.tmdb.org/t/p/original' + movie.backdrop_path"
@@ -112,29 +113,21 @@
         </div>
       </div>
     </div>
-
-    <div class="links-section">
-      <!-- Visit IMDB page -->
-      <div class="movie-link" v-if="movie.imdb_id">
-        <a
-          :href="'https://www.imdb.com/title/' + movie.imdb_id"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="visit-page"
-          >Visit IMDB Page</a
-        >
-      </div>
-
-      <!-- Link to movie page -->
-      <div v-if="movie.homepage">
-        <a
-          :href="movie.homepage"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="visit-page"
-          >Visit Movie Page</a
-        >
-      </div>
+    <div class="links-container">
+      <button
+        v-if="movie.homepage"
+        class="visit-page-button"
+        @click="visitMoviePage(movie.homepage)"
+      >
+        Movie Page
+      </button>
+      <button
+        v-if="movie.imdb_id"
+        class="visit-page-button"
+        @click="visitIMDBPage(movie.imdb_id)"
+      >
+        IMDB Page
+      </button>
     </div>
   </div>
 </template>
@@ -166,6 +159,13 @@ export default {
     }
   },
   methods: {
+    visitMoviePage(url) {
+      window.open(url, "_blank").focus();
+    },
+    visitIMDBPage(imdbId) {
+      const url = `https://www.imdb.com/title/${imdbId}`;
+      window.open(url, "_blank").focus();
+    },
     getRatingStyle(voteAverage) {
       let color;
       if (voteAverage >= 7.5) {
@@ -317,24 +317,28 @@ h3 {
   margin-right: 10px;
 }
 
-.visit-page {
+.visit-page-button {
   cursor: pointer;
-  color: #2196f3;
+  color: #1976d2;
   text-decoration: none;
-  font-size: 18px;
-  margin-top: 20px;
+  margin: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #1976d2;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+.visit-page-button:hover {
+  background-color: #0d47a1;
 }
 
 .loading-animation-container {
   width: 100%;
-
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.links-section {
-  margin-top: 20px;
 }
 
 @keyframes spin {
