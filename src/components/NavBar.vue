@@ -47,7 +47,7 @@
         </div>
         <div class="search-container">
           <ul class="nav-btn-container">
-            <li class="search-btn">
+            <li class="search-btn" style="padding-right: 10px">
               <router-link to="/" :class="{ active: isActive('Home') }"
                 >Search 🔍</router-link
               >
@@ -190,6 +190,13 @@ a {
 }
 
 @media screen and (max-width: 768px) {
+  .nav-btn-container {
+    margin-left: 0px;
+  }
+
+  li {
+    margin-right: 0px;
+  }
   .main-btn-container {
     display: none;
   }
