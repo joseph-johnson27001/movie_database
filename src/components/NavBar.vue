@@ -7,6 +7,13 @@
           <span></span>
           <span></span>
         </button>
+        <div class="additional-btn-container" v-if="this.isMenuOpen">
+          <button @click="navigateTo('new-releases')">New Releases</button>
+          <button @click="navigateTo('top-rated')">Top Rated</button>
+          <button @click="navigateTo('trending')">Trending</button>
+          <button @click="navigateTo('upcoming')">Upcoming</button>
+        </div>
+
         <ul class="nav-btn-container main-btn-container">
           <li>
             <router-link
@@ -63,6 +70,11 @@
 export default {
   name: "NavBar",
   inject: ["state"],
+  data() {
+    return {
+      isMenuOpen: false,
+    };
+  },
   methods: {
     isActive(item) {
       return this.$route.name === item;
@@ -89,6 +101,9 @@ nav {
   margin: auto;
 }
 
+.additional-btn-container {
+  display: none;
+}
 .main-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -135,6 +150,10 @@ a {
 @media screen and (max-width: 768px) {
   .main-btn-container {
     display: none;
+  }
+
+  .additional-btn-container {
+    display: block;
   }
 
   .hamburger-btn {
