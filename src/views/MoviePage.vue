@@ -318,11 +318,14 @@ h3 {
   margin-right: 10px;
 }
 
+.links-container {
+  margin-top: 20px;
+}
+
 .visit-page-button {
   cursor: pointer;
   color: #1976d2;
   text-decoration: none;
-  margin: 10px;
   padding: 8px 16px;
   border: none;
   border-radius: 4px;
