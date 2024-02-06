@@ -35,20 +35,12 @@ export default {
     this.context = this.$route.path;
   },
   methods: {
-    scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: "instant",
-      });
-    },
     async goToPreviousPage() {
-      this.scrollToTop();
       this.currentPage = this.currentPage - 1;
       await this.fetchMovies(this.currentPage);
     },
 
     async goToNextPage() {
-      this.scrollToTop();
       this.currentPage = this.currentPage + 1;
       await this.fetchMovies(this.currentPage);
     },
