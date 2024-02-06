@@ -325,17 +325,17 @@ h3 {
 .visit-page-button {
   padding: 8px 16px;
   font-size: 14px;
-  border: 2px solid #2196f3;
+  border: 1px solid #ccc;
   background-color: #2196f3;
   color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition: background-color 0.1s ease;
   margin: 0 4px;
   border-radius: 20px;
 }
 
 .visit-page-button:hover {
-  background-color: #0d47a1;
+  background-color: navy;
 }
 
 .loading-animation-container {
