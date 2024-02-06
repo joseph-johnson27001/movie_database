@@ -110,6 +110,7 @@ export default {
     },
     clearSearchHistory() {
       this.state.searchQuery = "";
+      this.state.currentPage = 1;
       this.closeMenu();
     },
     toggleMenu() {
