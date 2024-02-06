@@ -53,7 +53,9 @@
     </div>
     <div>
       <pagination-buttons
-        v-show="!this.loading && this.movies.length !== 0"
+        v-show="
+          !this.loading && this.movies.length !== 0 && this.movies.length == 20
+        "
         @movies-fetched="handleMoviesFetched"
         id="pagination-buttons"
       />
