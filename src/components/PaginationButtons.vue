@@ -3,7 +3,9 @@
     <button @click="goToPreviousPage" :disabled="currentPage === 1">
       Previous
     </button>
-    <button @click="goToNextPage">Next</button>
+    <button @click="goToNextPage" :disabled="this.state.noNextButton">
+      Next
+    </button>
   </div>
 </template>
 
@@ -28,11 +30,14 @@ export default {
     return {
       context: "",
       currentPage: 1,
+      nextButtonDisabled: false,
     };
   },
-
   mounted() {
     this.context = this.$route.path;
+  },
+  computed() {
+    this.nextButtonDisabled = this.state.noNextButton;
   },
   methods: {
     async goToPreviousPage() {
