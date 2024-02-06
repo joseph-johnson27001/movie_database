@@ -22,7 +22,16 @@ export default {
   },
   methods: {
     searchMovies() {
+      const movieGrid = document.querySelector(".movie-grid");
+      const loadingAnimation = document.querySelector(
+        ".loading-animation-container"
+      );
+      const paginationButtons = document.querySelector("#pagination-buttons");
+      movieGrid.style.display = "none";
+      paginationButtons.style.display = "none";
+      loadingAnimation.style.display = "block";
       this.state.searchQuery = this.query;
+      movieGrid.style.display = "none";
       if (this.query.length !== 0) {
         this.state.movieLength = 0;
         this.state.currentPage = 1;

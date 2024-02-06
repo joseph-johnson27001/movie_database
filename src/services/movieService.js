@@ -73,6 +73,11 @@ async function fetchNewReleases(page = 1) {
 }
 
 async function searchMovies(query, page = 1) {
+  const movieGrid = document.querySelector(".movie-grid");
+  const loadingAnimation = document.querySelector(
+    ".loading-animation-container"
+  );
+  const paginationButtons = document.querySelector("#pagination-buttons");
   const url = `${BASE_URL}/search/movie?query=${query}
   )}&page=${page}`;
 
@@ -90,6 +95,9 @@ async function searchMovies(query, page = 1) {
       throw new Error("Failed to search movies");
     }
     const data = await response.json();
+    loadingAnimation.style.display = "none";
+    movieGrid.style.display = "grid";
+    paginationButtons.style.display = "flex";
     return data.results;
   } catch (error) {
     console.error("Error searching movies:", error);
