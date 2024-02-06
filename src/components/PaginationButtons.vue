@@ -38,7 +38,7 @@ export default {
     scrollToTop() {
       window.scrollTo({
         top: 0,
-        behavior: "smooth",
+        behavior: "instant",
       });
     },
     async goToPreviousPage() {

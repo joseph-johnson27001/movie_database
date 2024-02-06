@@ -55,6 +55,7 @@
       <pagination-buttons
         v-if="!this.loading && this.movies.length !== 0"
         @movies-fetched="handleMoviesFetched"
+        id="pagination-buttons"
       />
     </div>
   </div>
@@ -86,8 +87,21 @@ export default {
     };
   },
   methods: {
-    handleMoviesFetched(movies) {
+    async handleMoviesFetched(movies) {
+      const movieGrid = document.querySelector(".movie-grid");
+      const paginationButtons = document.querySelector("#pagination-buttons");
+      const loadingAnimation = document.querySelector(
+        ".loading-animation-container"
+      );
+      paginationButtons.style.display = "none";
+      movieGrid.style.display = "none";
+      loadingAnimation.style.display = "block";
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       this.$emit("update:movies", movies);
+      loadingAnimation.style.display = "none";
+      movieGrid.style.display = "grid";
+      paginationButtons.style.display = "flex";
+      this.loading = false;
     },
     imageLoaded() {
       this.loadedImages++;
