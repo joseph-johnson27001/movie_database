@@ -94,7 +94,7 @@
     <!-- Production Companies -->
     <div
       class="details-card companies-container"
-      v-if="movie.production_companies"
+      v-if="movie.production_companies && movie.production_companies.length > 0"
     >
       <strong class="">Production Companies</strong>
       <div class="production-companies">
