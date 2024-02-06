@@ -1,9 +1,13 @@
 <template>
   <div class="pagination-buttons">
-    <button @click="goToPreviousPage" :disabled="currentPage === 1">
+    <button
+      @click="goToPreviousPage"
+      :disabled="this.state.currentPage === 1"
+      d
+    >
       Previous
     </button>
-    <button @click="goToNextPage" :disabled="this.state.noNextButton">
+    <button @click="goToNextPage" :disabled="this.state.movieLength < 20" d>
       Next
     </button>
   </div>
@@ -30,23 +34,21 @@ export default {
     return {
       context: "",
       currentPage: 1,
-      nextButtonDisabled: false,
     };
   },
   mounted() {
     this.context = this.$route.path;
   },
-  computed() {
-    this.nextButtonDisabled = this.state.noNextButton;
-  },
   methods: {
     async goToPreviousPage() {
       this.currentPage = this.currentPage - 1;
+      this.state.currentPage = this.currentPage;
       await this.fetchMovies(this.currentPage);
     },
 
     async goToNextPage() {
       this.currentPage = this.currentPage + 1;
+      this.state.currentPage = this.currentPage;
       await this.fetchMovies(this.currentPage);
     },
     async fetchMovies(pageNumber) {

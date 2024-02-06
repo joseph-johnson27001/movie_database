@@ -102,7 +102,7 @@ export default {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       this.$emit("update:movies", movies);
     },
-    imageLoaded() {
+    async imageLoaded() {
       const paginationButtons = document.querySelector("#pagination-buttons");
       const movieGrid = document.querySelector(".movie-grid");
       const loadingAnimation = document.querySelector(
@@ -114,12 +114,9 @@ export default {
         loadingAnimation.style.display = "none";
         movieGrid.style.display = "grid";
         paginationButtons.style.display = "flex";
-        if (this.loadedImages < 20) {
-          this.state.noNextButton = true;
-        } else {
-          this.state.noNextButton = false;
-        }
       }
+      console.log(this.movieLength);
+      console.log(this.movieLength > 20);
     },
     getReleaseYear(releaseDate) {
       return new Date(releaseDate).getFullYear();
@@ -139,11 +136,12 @@ export default {
   },
   watch: {
     movies: {
-      handler() {
+      async handler() {
         if (this.movies.length == 0) {
           this.loading = false;
         }
         this.movieLength = this.movies.length;
+        this.state.movieLength = this.movieLength;
       },
     },
   },

@@ -1,4 +1,8 @@
 export default {
   searchQuery: "",
-  noNextButton: false,
+  nextButton: true,
+  newSearch: false,
+  movieLength: 0,
+  currentPage: 1,
+  hidePagination: false,
 };
