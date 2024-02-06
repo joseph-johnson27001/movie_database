@@ -75,7 +75,6 @@ async function fetchNewReleases(page = 1) {
 async function searchMovies(query, page = 1) {
   const url = `${BASE_URL}/search/movie?query=${query}
   )}&page=${page}`;
-  console.log(page);
 
   const options = {
     method: "GET",
@@ -139,7 +138,6 @@ async function fetchMovieDetails(movieId) {
       throw new Error("Failed to fetch movie details");
     }
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error("Error fetching movie details:", error);

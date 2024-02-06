@@ -115,8 +115,6 @@ export default {
         movieGrid.style.display = "grid";
         paginationButtons.style.display = "flex";
       }
-      console.log(this.movieLength);
-      console.log(this.movieLength > 20);
     },
     getReleaseYear(releaseDate) {
       return new Date(releaseDate).getFullYear();

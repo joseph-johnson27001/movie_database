@@ -1,13 +1,9 @@
 <template>
   <div class="pagination-buttons">
-    <button
-      @click="goToPreviousPage"
-      :disabled="this.state.currentPage === 1"
-      d
-    >
+    <button @click="goToPreviousPage" :disabled="this.state.currentPage === 1">
       Previous
     </button>
-    <button @click="goToNextPage" :disabled="this.state.movieLength < 20" d>
+    <button @click="goToNextPage" :disabled="this.state.movieLength < 20">
       Next
     </button>
   </div>
