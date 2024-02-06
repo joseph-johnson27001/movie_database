@@ -185,9 +185,10 @@ export default {
     getGenres(genres) {
       return genres.map((genre) => genre.name).join(", ");
     },
-    imageLoaded() {
-      this.loadedImage = true;
+    async imageLoaded() {
       if (this.movie) {
+        await new Promise((resolve) => resolve);
+        this.loadedImage = true;
         this.loading = false;
       }
     },
