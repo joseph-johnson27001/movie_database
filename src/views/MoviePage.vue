@@ -323,16 +323,15 @@ h3 {
 }
 
 .visit-page-button {
-  cursor: pointer;
-  color: #1976d2;
-  text-decoration: none;
   padding: 8px 16px;
-  margin: 0px 10px;
-  border: none;
-  border-radius: 4px;
-  background-color: #1976d2;
-  color: #fff;
-  transition: background-color 0.2s;
+  font-size: 14px;
+  border: 2px solid #2196f3;
+  background-color: #2196f3;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  margin: 0 4px;
+  border-radius: 20px;
 }
 
 .visit-page-button:hover {

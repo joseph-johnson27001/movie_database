@@ -6,7 +6,6 @@
       v-model="query"
       @keyup.enter="searchMovies"
     />
-    <!-- Show clear button (X) if there's text in the input -->
     <button v-if="query" @click="clearInput" class="cancel-btn">X</button>
     <button @click="searchMovies" class="search-btn">Search</button>
   </div>
