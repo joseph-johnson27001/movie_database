@@ -40,7 +40,6 @@ export default {
     },
     clearInput() {
       this.query = "";
-      this.searchMovies();
     },
   },
 };
