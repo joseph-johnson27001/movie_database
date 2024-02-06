@@ -53,7 +53,7 @@
     </div>
     <div>
       <pagination-buttons
-        v-if="!this.loading && this.movies.length !== 0"
+        v-show="!this.loading && this.movies.length !== 0"
         @movies-fetched="handleMoviesFetched"
         id="pagination-buttons"
       />
@@ -88,13 +88,14 @@ export default {
   },
   methods: {
     async handleMoviesFetched(movies) {
+      this.loading = true;
       const movieGrid = document.querySelector(".movie-grid");
+      movieGrid.style.display = "none";
       const paginationButtons = document.querySelector("#pagination-buttons");
+      paginationButtons.style.display = "none";
       const loadingAnimation = document.querySelector(
         ".loading-animation-container"
       );
-      paginationButtons.style.display = "none";
-      movieGrid.style.display = "none";
       loadingAnimation.style.display = "block";
       await new Promise((resolve) => setTimeout(resolve, 1000));
       this.$emit("update:movies", movies);
