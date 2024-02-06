@@ -99,7 +99,7 @@ export default {
       const paginationButtons = document.querySelector("#pagination-buttons");
       paginationButtons.style.display = "none";
       loadingAnimation.style.display = "block";
-      await new Promise((resolve) => resolve);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       this.$emit("update:movies", movies);
     },
     async imageLoaded() {
