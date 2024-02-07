@@ -62,7 +62,7 @@ export default {
         case "/upcoming":
           fetchFunction = fetchUpcomingMovies;
           break;
-        case "/":
+        case "/search":
           fetchFunction = searchMovies;
           break;
         default:
