@@ -9,7 +9,7 @@ import UpcomingPage from "../views/UpcomingPage.vue";
 const routes = [
   {
     path: "/",
-    redirect: "/new-releases", // Redirect root path to "/new-releases"
+    redirect: "/new-releases",
   },
   {
     path: "/search",

@@ -5,4 +5,5 @@ export default {
   movieLength: 0,
   currentPage: 1,
   hidePagination: false,
+  apiLink: null,
 };

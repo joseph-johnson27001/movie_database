@@ -1,3 +1,5 @@
+import state from "@/store/state.js";
+
 const fetch = require("node-fetch");
 
 const API_KEY =
@@ -6,6 +8,8 @@ const BASE_URL = "https://api.themoviedb.org/3";
 
 async function fetchTrendingMovies(page = 1) {
   const url = `${BASE_URL}/trending/movie/week?include_adult=false&page=${page}`;
+  state.apiLink = url;
+  console.log(state);
   const options = {
     method: "GET",
     headers: {
@@ -29,6 +33,7 @@ async function fetchTrendingMovies(page = 1) {
 
 async function fetchTopRatedMovies(page = 1) {
   const url = `${BASE_URL}/movie/top_rated?include_adult=false&page=${page}`;
+  state.apiLink = url;
   const options = {
     method: "GET",
     headers: {
@@ -51,6 +56,7 @@ async function fetchTopRatedMovies(page = 1) {
 }
 async function fetchNewReleases(page = 1) {
   const url = `${BASE_URL}/movie/now_playing?include_adult=false&page=${page}`;
+  state.apiLink = url;
   const options = {
     method: "GET",
     headers: {
@@ -80,6 +86,7 @@ async function searchMovies(query, page = 1) {
   const paginationButtons = document.querySelector("#pagination-buttons");
   const url = `${BASE_URL}/search/movie?query=${query}
   )}&page=${page}`;
+  state.apiLink = url;
 
   const options = {
     method: "GET",
@@ -108,7 +115,8 @@ async function searchMovies(query, page = 1) {
 async function fetchUpcomingMovies(page = 1) {
   const currentDate = new Date().toISOString().split("T")[0];
   const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&page=${page}&sort_by=popularity.desc&with_release_type=1&release_date.gte=${currentDate}`;
-
+  state.apiLink = url;
+  console.log(url);
   const options = {
     method: "GET",
     headers: {
@@ -153,7 +161,7 @@ async function fetchMovieDetails(movieId) {
   }
 }
 
-module.exports = {
+export {
   fetchTrendingMovies,
   fetchTopRatedMovies,
   fetchNewReleases,
