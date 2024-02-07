@@ -9,11 +9,15 @@
 </template>
 
 <script>
-import { fetchUpcomingMovies } from "../services/movieService";
+import {
+  fetchMovieDetailsByURL,
+  fetchUpcomingMovies,
+} from "../services/movieService";
 import MovieGrid from "@/components/MovieGrid.vue";
 
 export default {
   name: "UpcomingPage",
+  inject: ["state"],
   components: {
     MovieGrid,
   },
@@ -22,17 +26,17 @@ export default {
       upcomingMovies: [],
     };
   },
-  async created() {
-    this.fetchMovies();
-  },
-  methods: {
-    async fetchMovies() {
-      try {
+  async mounted() {
+    try {
+      if (this.state.apiLink == null) {
         this.upcomingMovies = await fetchUpcomingMovies();
-      } catch (error) {
-        console.error("Error fetching upcoming movies:", error);
+      } else {
+        this.upcomingMovies = await fetchMovieDetailsByURL(this.state.apiLink);
       }
-    },
+    } catch (error) {
+      console.error("Error fetching top rated movies:", error);
+    }
+    this.state.apiLink = null;
   },
 };
 </script>

@@ -116,7 +116,6 @@ async function fetchUpcomingMovies(page = 1) {
   const currentDate = new Date().toISOString().split("T")[0];
   const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&page=${page}&sort_by=popularity.desc&with_release_type=1&release_date.gte=${currentDate}`;
   state.apiLink = url;
-  console.log(url);
   const options = {
     method: "GET",
     headers: {
