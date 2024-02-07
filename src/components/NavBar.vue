@@ -111,6 +111,7 @@ export default {
     clearSearchHistory() {
       this.state.searchQuery = "";
       this.state.currentPage = 1;
+      this.state.apiLink = null;
       this.closeMenu();
     },
     toggleMenu() {

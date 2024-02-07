@@ -7,10 +7,14 @@
 
 <script>
 import MovieGrid from "@/components/MovieGrid.vue";
-import { fetchNewReleases } from "@/services/movieService.js";
+import {
+  fetchNewReleases,
+  fetchMovieDetailsByURL,
+} from "@/services/movieService.js";
 
 export default {
   name: "NewReleasesPage",
+  inject: ["state"],
   components: {
     MovieGrid,
   },
@@ -21,7 +25,11 @@ export default {
   },
   async mounted() {
     try {
-      this.newReleases = await fetchNewReleases();
+      if (this.state.apiLink == null) {
+        this.newReleases = await fetchNewReleases();
+      } else {
+        this.newReleases = await fetchMovieDetailsByURL(this.state.apiLink);
+      }
     } catch (error) {
       console.error("Error fetching new releases:", error);
     }

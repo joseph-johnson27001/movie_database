@@ -15,10 +15,14 @@
 <script>
 import SearchBar from "@/components/SearchBar.vue";
 import MovieGrid from "@/components/MovieGrid.vue";
-import { searchMovies } from "@/services/movieService.js";
+import {
+  searchMovies,
+  fetchMovieDetailsByURL,
+} from "@/services/movieService.js";
 
 export default {
-  name: "SearchPage",
+  name: "HomePage",
+  inject: ["state"],
   components: {
     SearchBar,
     MovieGrid,
@@ -28,6 +32,12 @@ export default {
       searchResults: [],
       showGrid: false,
     };
+  },
+  async mounted() {
+    if (this.state.apiLink != null) {
+      this.searchResults = await fetchMovieDetailsByURL(this.state.apiLink);
+      this.showGrid = true;
+    }
   },
   methods: {
     async fetchSearchResults(query) {

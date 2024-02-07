@@ -161,6 +161,29 @@ async function fetchMovieDetails(movieId) {
   }
 }
 
+async function fetchMovieDetailsByURL(url) {
+  const options = {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  };
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error("Failed to fetch movie details");
+    }
+    const data = await response.json();
+    console.log(data);
+    return data.results;
+  } catch (error) {
+    console.error("Error fetching movie details:", error);
+    return null;
+  }
+}
+
 export {
   fetchTrendingMovies,
   fetchTopRatedMovies,
@@ -168,4 +191,5 @@ export {
   searchMovies,
   fetchMovieDetails,
   fetchUpcomingMovies,
+  fetchMovieDetailsByURL,
 };
