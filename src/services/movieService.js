@@ -1,4 +1,5 @@
 import state from "@/store/state.js";
+import moment from "moment";
 
 const fetch = require("node-fetch");
 
@@ -113,7 +114,7 @@ async function searchMovies(query, page = 1) {
 }
 
 async function fetchUpcomingMovies(page = 1) {
-  const currentDate = new Date().toISOString().split("T")[0];
+  const currentDate = moment().format("YYYY-MM-DD");
   const url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&language=en-US&page=${page}&sort_by=popularity.desc&with_release_type=1&release_date.gte=${currentDate}`;
   state.apiLink = url;
   const options = {

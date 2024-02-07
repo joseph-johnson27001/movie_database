@@ -99,7 +99,6 @@ export default {
       const paginationButtons = document.querySelector("#pagination-buttons");
       paginationButtons.style.display = "none";
       loadingAnimation.style.display = "block";
-      await new Promise((resolve) => setTimeout(resolve, 1000));
       this.$emit("update:movies", movies);
     },
     async imageLoaded() {
@@ -108,13 +107,19 @@ export default {
       const loadingAnimation = document.querySelector(
         ".loading-animation-container"
       );
+
       this.loadedImages++;
-      if (this.loadedImages == this.movieLength && this.loadedImages !== 0) {
-        this.loading = false;
-        loadingAnimation.style.display = "none";
-        movieGrid.style.display = "grid";
-        paginationButtons.style.display = "flex";
-      }
+      const totalImages = this.movieLength;
+      const imageLoadPromise = new Promise((resolve) => {
+        if (this.loadedImages === totalImages && this.loadedImages !== 0) {
+          resolve();
+        }
+      });
+      await imageLoadPromise;
+      this.loading = false;
+      loadingAnimation.style.display = "none";
+      movieGrid.style.display = "grid";
+      paginationButtons.style.display = "flex";
     },
     getReleaseYear(releaseDate) {
       return new Date(releaseDate).getFullYear();
