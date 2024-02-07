@@ -9,11 +9,15 @@
 </template>
 
 <script>
-import { fetchTrendingMovies } from "@/services/movieService.js";
+import {
+  fetchTrendingMovies,
+  fetchMovieDetailsByURL,
+} from "@/services/movieService.js";
 import MovieGrid from "@/components/MovieGrid.vue";
 
 export default {
   name: "TrendingPage",
+  inject: ["state"],
   components: {
     MovieGrid,
   },
@@ -22,8 +26,19 @@ export default {
       trendingMovies: [],
     };
   },
+
   async mounted() {
-    this.trendingMovies = await fetchTrendingMovies();
+    try {
+      console.log(this.state.apiLink);
+      if (this.state.apiLink == null) {
+        this.trendingMovies = await fetchTrendingMovies();
+      } else {
+        this.trendingMovies = await fetchMovieDetailsByURL(this.state.apiLink);
+      }
+    } catch (error) {
+      console.error("Error fetching top rated movies:", error);
+    }
+    this.state.apiLink = null;
   },
 };
 </script>
