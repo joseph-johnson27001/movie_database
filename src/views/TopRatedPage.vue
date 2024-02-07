@@ -10,10 +10,14 @@
 
 <script>
 import MovieGrid from "@/components/MovieGrid.vue";
-import { fetchTopRatedMovies } from "@/services/movieService.js";
+import {
+  fetchTopRatedMovies,
+  fetchMovieDetailsByURL,
+} from "@/services/movieService.js";
 
 export default {
   name: "TopRatedPage",
+  inject: ["state"],
   components: {
     MovieGrid,
   },
@@ -22,8 +26,17 @@ export default {
       topRatedMovies: [],
     };
   },
+
   async mounted() {
-    this.topRatedMovies = await fetchTopRatedMovies();
+    try {
+      if (this.state.apiLink == null) {
+        this.topRatedMovies = await fetchTopRatedMovies();
+      } else {
+        this.topRatedMovies = await fetchMovieDetailsByURL(this.state.apiLink);
+      }
+    } catch (error) {
+      console.error("Error fetching top rated movies:", error);
+    }
   },
 };
 </script>
