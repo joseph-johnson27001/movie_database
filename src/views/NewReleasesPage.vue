@@ -33,6 +33,7 @@ export default {
     } catch (error) {
       console.error("Error fetching new releases:", error);
     }
+    this.state.apiLink = null;
   },
 };
 </script>

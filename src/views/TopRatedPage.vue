@@ -37,6 +37,7 @@ export default {
     } catch (error) {
       console.error("Error fetching top rated movies:", error);
     }
+    this.state.apiLink = null;
   },
 };
 </script>

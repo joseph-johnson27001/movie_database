@@ -38,6 +38,7 @@ export default {
       this.searchResults = await fetchMovieDetailsByURL(this.state.apiLink);
       this.showGrid = true;
     }
+    this.state.apiLink = null;
   },
   methods: {
     async fetchSearchResults(query) {
