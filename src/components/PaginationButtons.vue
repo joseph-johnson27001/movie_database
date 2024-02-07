@@ -34,6 +34,13 @@ export default {
   },
   mounted() {
     this.context = this.$route.path;
+    if (this.state.apiLink) {
+      const urlParams = new URLSearchParams(this.state.apiLink);
+      const pageValue = urlParams.get("page");
+      if (pageValue) {
+        this.currentPage = parseInt(pageValue);
+      }
+    }
   },
   methods: {
     async goToPreviousPage() {
