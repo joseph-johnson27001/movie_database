@@ -48,7 +48,7 @@
         <div class="search-container">
           <ul class="nav-btn-container">
             <li class="search-btn" style="padding-right: 10px">
-              <router-link to="/" :class="{ active: isActive('Home') }"
+              <router-link to="/search" :class="{ active: isActive('Home') }"
                 >Search 🔍</router-link
               >
             </li>

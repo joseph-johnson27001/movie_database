@@ -18,7 +18,7 @@ import MovieGrid from "@/components/MovieGrid.vue";
 import { searchMovies } from "@/services/movieService.js";
 
 export default {
-  name: "HomePage",
+  name: "SearchPage",
   components: {
     SearchBar,
     MovieGrid,
