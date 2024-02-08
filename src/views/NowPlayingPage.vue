@@ -27,7 +27,6 @@ export default {
     try {
       if (this.state.apiLink == null) {
         this.nowPlaying = await fetchNowPlaying();
-        console.log(this.nowPlaying);
       } else {
         this.nowPlaying = await fetchMovieDetailsByURL(this.state.apiLink);
       }
