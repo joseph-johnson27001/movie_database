@@ -209,7 +209,7 @@ a {
   margin-left: 10px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
   .nav-btn-container {
     margin-left: 0px;
   }
