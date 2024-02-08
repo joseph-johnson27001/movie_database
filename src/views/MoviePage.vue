@@ -190,11 +190,19 @@ export default {
     },
     async imageLoaded() {
       if (this.movie) {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        await Promise.race([
+          new Promise((resolve) => {
+            const img = new Image();
+            img.src = `https://image.tmdb.org/t/p/original${this.movie.backdrop_path}`;
+            img.onload = resolve;
+            img.onerror = resolve;
+          }),
+        ]);
         this.loadedImage = true;
         this.loading = false;
       }
     },
+
     numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
