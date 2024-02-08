@@ -50,7 +50,7 @@
             <li class="search-btn" style="padding-right: 10px">
               <router-link
                 to="/search"
-                :class="{ active: isActive('Home') }"
+                :class="{ active: isActive('Search') }"
                 @click="clearSearchHistory"
                 >Search 🔍</router-link
               >
