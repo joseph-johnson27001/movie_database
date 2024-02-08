@@ -10,7 +10,6 @@ const BASE_URL = "https://api.themoviedb.org/3";
 async function fetchTrendingMovies(page = 1) {
   const url = `${BASE_URL}/trending/movie/week?include_adult=false&page=${page}`;
   state.apiLink = url;
-  console.log(state);
   const options = {
     method: "GET",
     headers: {
@@ -176,7 +175,6 @@ async function fetchMovieDetailsByURL(url) {
       throw new Error("Failed to fetch movie details");
     }
     const data = await response.json();
-    console.log(data);
     return data.results;
   } catch (error) {
     console.error("Error fetching movie details:", error);

@@ -29,7 +29,6 @@ export default {
 
   async mounted() {
     try {
-      console.log(this.state.apiLink);
       if (this.state.apiLink == null) {
         this.trendingMovies = await fetchTrendingMovies();
       } else {
