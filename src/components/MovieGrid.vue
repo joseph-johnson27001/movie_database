@@ -108,15 +108,17 @@ export default {
       const loadingAnimation = document.querySelector(
         ".loading-animation-container"
       );
-
-      this.loadedImages++;
       const totalImages = this.movieLength;
+      this.loadedImages++;
+      const timeoutPromise = new Promise((resolve) => {
+        setTimeout(resolve, 1000);
+      });
       const imageLoadPromise = new Promise((resolve) => {
         if (this.loadedImages === totalImages && this.loadedImages !== 0) {
           resolve();
         }
       });
-      await imageLoadPromise;
+      await Promise.race([imageLoadPromise, timeoutPromise]);
       this.loading = false;
       loadingAnimation.style.display = "none";
       movieGrid.style.display = "grid";
