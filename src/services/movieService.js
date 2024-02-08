@@ -69,12 +69,12 @@ async function fetchNowPlaying(page = 1) {
   try {
     const response = await fetch(url, options);
     if (!response.ok) {
-      throw new Error("Failed to fetch new ");
+      throw new Error("Failed to fetch now playing");
     }
     const data = await response.json();
     return data.results;
   } catch (error) {
-    console.error("Error fetching new :", error);
+    console.error("Error fetching now playing:", error);
     return [];
   }
 }
