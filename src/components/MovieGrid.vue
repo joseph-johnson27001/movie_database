@@ -51,7 +51,7 @@
         </div>
       </router-link>
     </div>
-    <div>
+    <div v-show="this.showPagination">
       <pagination-buttons
         v-show="!this.loading && this.movies.length !== 0"
         @movies-fetched="handleMoviesFetched"
@@ -85,6 +85,7 @@ export default {
       loadedImages: 0,
       backupImage: "/movie_camera_poster.JPG",
       visiblePageCount: 0,
+      showPagination: false,
     };
   },
   methods: {
@@ -145,6 +146,11 @@ export default {
         }
         this.movieLength = this.movies.length;
         this.state.movieLength = this.movieLength;
+        if (this.movieLength < 20) {
+          this.showPagination = false;
+        } else {
+          this.showPagination = true;
+        }
       },
     },
   },
