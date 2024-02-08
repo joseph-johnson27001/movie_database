@@ -13,7 +13,7 @@
               to="/new-releases"
               :class="{ active: isActive('New Releases') }"
               @click="clearSearchHistory"
-              >New Releases</router-link
+              >Now Playing</router-link
             >
           </li>
           <li>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>New Releases</h2>
+    <h2>Now Playing</h2>
     <MovieGrid :movies="newReleases" @update:movies="newReleases = $event" />
   </div>
 </template>
