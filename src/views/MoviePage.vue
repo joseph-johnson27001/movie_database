@@ -190,7 +190,7 @@ export default {
     },
     async imageLoaded() {
       if (this.movie) {
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         this.loadedImage = true;
         this.loading = false;
       }
