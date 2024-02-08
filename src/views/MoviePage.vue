@@ -19,14 +19,12 @@
       :src="'https://image.tmdb.org/t/p/original' + movie.backdrop_path"
       class="jumbo-area"
       alt="Backdrop"
-      @load="imageLoaded"
     />
     <img
       v-else
       src="/jumbo-movie-image.jpg"
       class="jumbo-area"
       alt="Default Image"
-      @load="imageLoaded"
     />
 
     <!-- Movie details -->
@@ -148,16 +146,21 @@ export default {
       loadedImage: false,
     };
   },
-  async created() {
-    const movieId = this.$route.params.id;
-    const movieDetails = await fetchMovieDetails(movieId);
-    if (movieDetails) {
-      this.movie = await movieDetails;
-      if (this.loadedImage) {
-        this.loading = false;
+  async mounted() {
+    try {
+      const movieId = this.$route.params.id;
+      const movieDetails = await fetchMovieDetails(movieId);
+
+      if (movieDetails) {
+        this.movie = movieDetails;
+        await this.$nextTick();
+        this.imageLoaded();
       }
+    } catch (error) {
+      console.error("Error fetching movie details:", error);
     }
   },
+
   methods: {
     visitMoviePage(url) {
       window.open(url, "_blank").focus();
@@ -187,7 +190,7 @@ export default {
     },
     async imageLoaded() {
       if (this.movie) {
-        await new Promise((resolve) => setTimeout(resolve, 100));
+        await new Promise((resolve) => setTimeout(resolve, 500));
         this.loadedImage = true;
         this.loading = false;
       }
