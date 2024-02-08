@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Now Playing</h2>
-    <MovieGrid :movies="nowPlaying" @update:movies="newReleases = $event" />
+    <MovieGrid :movies="nowPlaying" @update:movies="nowPlaying = $event" />
   </div>
 </template>
 
@@ -27,6 +27,7 @@ export default {
     try {
       if (this.state.apiLink == null) {
         this.nowPlaying = await fetchNowPlaying();
+        console.log(this.nowPlaying);
       } else {
         this.nowPlaying = await fetchMovieDetailsByURL(this.state.apiLink);
       }
