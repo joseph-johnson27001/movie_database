@@ -55,7 +55,7 @@ async function fetchTopRatedMovies(page = 1) {
     return [];
   }
 }
-async function fetchNewReleases(page = 1) {
+async function fetchNowPlaying(page = 1) {
   const url = `${BASE_URL}/movie/now_playing?include_adult=false&page=${page}`;
   state.apiLink = url;
   const options = {
@@ -69,12 +69,12 @@ async function fetchNewReleases(page = 1) {
   try {
     const response = await fetch(url, options);
     if (!response.ok) {
-      throw new Error("Failed to fetch new releases");
+      throw new Error("Failed to fetch new ");
     }
     const data = await response.json();
     return data.results;
   } catch (error) {
-    console.error("Error fetching new releases:", error);
+    console.error("Error fetching new :", error);
     return [];
   }
 }
@@ -187,7 +187,7 @@ async function fetchMovieDetailsByURL(url) {
 export {
   fetchTrendingMovies,
   fetchTopRatedMovies,
-  fetchNewReleases,
+  fetchNowPlaying,
   searchMovies,
   fetchMovieDetails,
   fetchUpcomingMovies,

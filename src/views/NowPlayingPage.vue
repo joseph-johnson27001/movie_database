@@ -1,34 +1,34 @@
 <template>
   <div>
     <h2>Now Playing</h2>
-    <MovieGrid :movies="newReleases" @update:movies="newReleases = $event" />
+    <MovieGrid :movies="nowPlaying" @update:movies="newReleases = $event" />
   </div>
 </template>
 
 <script>
 import MovieGrid from "@/components/MovieGrid.vue";
 import {
-  fetchNewReleases,
+  fetchNowPlaying,
   fetchMovieDetailsByURL,
 } from "@/services/movieService.js";
 
 export default {
-  name: "NewReleasesPage",
+  name: "NowPlayingPage",
   inject: ["state"],
   components: {
     MovieGrid,
   },
   data() {
     return {
-      newReleases: [],
+      nowPlaying: [],
     };
   },
   async mounted() {
     try {
       if (this.state.apiLink == null) {
-        this.newReleases = await fetchNewReleases();
+        this.nowPlaying = await fetchNowPlaying();
       } else {
-        this.newReleases = await fetchMovieDetailsByURL(this.state.apiLink);
+        this.nowPlaying = await fetchMovieDetailsByURL(this.state.apiLink);
       }
     } catch (error) {
       console.error("Error fetching new releases:", error);

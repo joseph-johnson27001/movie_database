@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import SearchPage from "../views/SearchPage.vue";
-import NewReleasesPage from "../views/NewReleasesPage.vue";
+import NowPlayingPage from "../views/NowPlayingPage.vue";
 import TrendingPage from "../views/TrendingPage.vue";
 import TopRatedPage from "../views/TopRatedPage.vue";
 import MoviePage from "../views/MoviePage.vue";
@@ -9,7 +9,7 @@ import UpcomingPage from "../views/UpcomingPage.vue";
 const routes = [
   {
     path: "/",
-    redirect: "/new-releases",
+    redirect: "/now-playing",
   },
   {
     path: "/search",
@@ -17,9 +17,9 @@ const routes = [
     component: SearchPage,
   },
   {
-    path: "/new-releases",
-    name: "New Releases",
-    component: NewReleasesPage,
+    path: "/now-playing",
+    name: "Now Playing",
+    component: NowPlayingPage,
   },
   {
     path: "/trending",

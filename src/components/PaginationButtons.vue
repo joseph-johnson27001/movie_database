@@ -13,7 +13,7 @@
 import {
   fetchTrendingMovies,
   fetchTopRatedMovies,
-  fetchNewReleases,
+  fetchNowPlaying,
   fetchUpcomingMovies,
   searchMovies,
 } from "../services/movieService";
@@ -63,8 +63,8 @@ export default {
         case "/top-rated":
           fetchFunction = fetchTopRatedMovies;
           break;
-        case "/new-releases":
-          fetchFunction = fetchNewReleases;
+        case "/now-playing":
+          fetchFunction = fetchNowPlaying;
           break;
         case "/upcoming":
           fetchFunction = fetchUpcomingMovies;

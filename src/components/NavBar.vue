@@ -10,8 +10,8 @@
         <ul class="nav-btn-container main-btn-container">
           <li>
             <router-link
-              to="/new-releases"
-              :class="{ active: isActive('New Releases') }"
+              to="/now-playing"
+              :class="{ active: isActive('Now Playing') }"
               @click="clearSearchHistory"
               >Now Playing</router-link
             >
@@ -62,10 +62,10 @@
         <ul class="additional-btn-list">
           <li>
             <router-link
-              to="/new-releases"
-              :class="{ active: isActive('New Releases') }"
+              to="/now-playing"
+              :class="{ active: isActive('Now Playing') }"
               @click="clearSearchHistory"
-              >New Releases</router-link
+              >Now Playing</router-link
             >
           </li>
           <li>
