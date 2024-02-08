@@ -146,7 +146,7 @@ export default {
         }
         this.movieLength = this.movies.length;
         this.state.movieLength = this.movieLength;
-        if (this.movieLength < 20) {
+        if (this.movieLength < 20 && this.state.currentPage == 1) {
           this.showPagination = false;
         } else {
           this.showPagination = true;
