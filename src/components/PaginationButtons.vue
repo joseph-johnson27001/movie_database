@@ -110,6 +110,7 @@ export default {
   transition: background-color 0.3s ease, border-color 0.3s ease;
   margin: 0 4px;
   border-radius: 20px;
+  transition: color 0.2s;
 }
 
 .pagination-buttons button:hover {

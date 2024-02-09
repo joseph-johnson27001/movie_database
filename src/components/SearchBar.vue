@@ -82,16 +82,16 @@ input:focus {
 }
 
 .search-btn {
-  padding: 15px 20px;
-  background-color: #007bff;
+  padding: 12px 16px;
+  background-color: #0d253f;
   color: white;
   border: none;
   border-radius: 20px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: color 0.2s;
 }
 
 .search-btn:hover {
-  background-color: #0056b3;
+  color: gold;
 }
 </style>

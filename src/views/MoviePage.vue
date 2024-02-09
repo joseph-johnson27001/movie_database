@@ -344,6 +344,7 @@ h3 {
   transition: background-color 0.1s ease;
   margin: 0 4px;
   border-radius: 20px;
+  transition: color 0.2s;
 }
 
 .visit-page-button:hover {
