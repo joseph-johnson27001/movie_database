@@ -104,8 +104,8 @@ export default {
 .pagination-buttons button {
   padding: 8px 16px;
   font-size: 14px;
-  border: 2px solid #2196f3;
-  background-color: #2196f3;
+  border: 1px solid white;
+  background-color: #0d253f;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -114,8 +114,7 @@ export default {
 }
 
 .pagination-buttons button:hover {
-  background-color: #007bff;
-  color: #fff;
+  color: gold;
 }
 
 .pagination-buttons button:disabled {

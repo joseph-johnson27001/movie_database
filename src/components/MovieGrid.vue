@@ -111,7 +111,7 @@ export default {
       const totalImages = this.movieLength;
       this.loadedImages++;
       const timeoutPromise = new Promise((resolve) => {
-        setTimeout(resolve, 1000);
+        setTimeout(resolve, 500);
       });
       const imageLoadPromise = new Promise((resolve) => {
         if (this.loadedImages === totalImages && this.loadedImages !== 0) {
