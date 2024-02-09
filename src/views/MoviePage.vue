@@ -338,7 +338,7 @@ h3 {
   padding: 8px 16px;
   font-size: 14px;
   border: 1px solid #ccc;
-  background-color: #2196f3;
+  background-color: #0d253f;
   color: white;
   cursor: pointer;
   transition: background-color 0.1s ease;
@@ -347,7 +347,7 @@ h3 {
 }
 
 .visit-page-button:hover {
-  background-color: navy;
+  color: gold;
 }
 
 .loading-animation-container {
