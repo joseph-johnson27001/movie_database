@@ -87,7 +87,6 @@ export default {
         this.$emit("movies-fetched", movies);
       } catch (error) {
         console.error("Error fetching movies:", error);
-        // Handle error, if needed
       }
     },
   },
@@ -102,7 +101,7 @@ export default {
 }
 
 .pagination-buttons button {
-  padding: 8px 16px;
+  padding: 10px 16px;
   font-size: 14px;
   border: 1px solid white;
   background-color: #0d253f;

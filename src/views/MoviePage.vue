@@ -335,7 +335,7 @@ h3 {
 }
 
 .visit-page-button {
-  padding: 8px 16px;
+  padding: 10px 16px;
   font-size: 14px;
   border: 1px solid #ccc;
   background-color: #0d253f;
