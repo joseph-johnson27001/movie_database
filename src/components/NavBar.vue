@@ -195,11 +195,11 @@ li {
 a {
   text-decoration: none;
   color: white;
-  transform: color 0.2s linear;
+  transition: color 0.1s linear;
 }
 
 a:hover:not(.active) {
-  color: lightgray;
+  color: #ccc;
 }
 
 .active {
