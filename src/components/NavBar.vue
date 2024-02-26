@@ -199,7 +199,7 @@ a {
 }
 
 a:hover:not(.active) {
-  color: #ccc;
+  color: #e6e6e6;
 }
 
 .active {
