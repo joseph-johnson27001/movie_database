@@ -23,10 +23,9 @@
             />
             <img
               v-else
-              src="../../img/movie_camera_poster.jpg"
+              :src="backupImage"
               class="movie-image"
               @load="imageLoaded"
-              :alt="movie.title"
             />
             <div
               v-if="movie.vote_count != 0"
@@ -84,6 +83,7 @@ export default {
       loading: true,
       movieLength: 0,
       loadedImages: 0,
+      backupImage: process.env.BASE_URL + "movie_camera_poster.JPG",
       visiblePageCount: 0,
       showPagination: false,
     };
