@@ -18,13 +18,13 @@
       v-if="movie.backdrop_path"
       :src="'https://image.tmdb.org/t/p/original' + movie.backdrop_path"
       class="jumbo-area"
-      alt="Backdrop"
+      :alt="movie.title"
     />
     <img
       v-else
-      src="/jumbo-movie-image.jpg"
+      src="../../img/jumbo-movie-image.jpg"
       class="jumbo-area"
-      alt="Default Image"
+      :alt="movie.title"
     />
 
     <!-- Movie details -->
