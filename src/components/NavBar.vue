@@ -195,6 +195,11 @@ li {
 a {
   text-decoration: none;
   color: white;
+  transform: color 0.2s linear;
+}
+
+a:hover:not(.active) {
+  color: lightgray;
 }
 
 .active {
