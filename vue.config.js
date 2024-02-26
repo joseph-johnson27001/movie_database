@@ -3,8 +3,9 @@
 //   transpileDependencies: true
 // })
 
-module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/movie_database/" : "/",
-};
+// module.exports = {
+//   publicPath: process.env.NODE_ENV === "production" ? "/movie_database/" : "/",
+// };
 
 module.exports = { baseUrl: "movie_database" };
+module.exports = { publicPage: "movie_database" };
