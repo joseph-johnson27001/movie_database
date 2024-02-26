@@ -46,6 +46,7 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+  base: "/movie_database/",
 });
 
 export default router;
