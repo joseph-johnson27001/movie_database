@@ -20,12 +20,7 @@
       class="jumbo-area"
       alt="Backdrop"
     />
-    <img
-      v-else
-      src="/jumbo-movie-image.jpg"
-      class="jumbo-area"
-      alt="Default Image"
-    />
+    <img v-else :src="backupImage" class="jumbo-area" alt="Default Image" />
 
     <!-- Movie details -->
 
@@ -144,6 +139,7 @@ export default {
       movie: false,
       loading: true,
       loadedImage: false,
+      backupImage: process.env.BASE_URL + "jumbo-movie-image.jpg",
     };
   },
   async mounted() {
