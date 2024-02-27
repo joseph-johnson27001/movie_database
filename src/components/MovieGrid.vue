@@ -83,7 +83,7 @@ export default {
       loading: true,
       movieLength: 0,
       loadedImages: 0,
-      backupImage: process.env.BASE_URL + "movie_camera_poster.JPG",
+      backupImage: "/movie_camera_poster.JPG",
       visiblePageCount: 0,
       showPagination: false,
     };
